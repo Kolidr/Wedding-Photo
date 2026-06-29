@@ -92,7 +92,8 @@
       "name": "1782720801942_1_IMG_2012.jpeg",
       "w": 1178,
       "h": 2089,
-      "size": "auto"
+      "size": "auto",
+      "fit": "cover"
     },
     {
       "name": "1782719057533_1_IMG_1898.jpeg",
