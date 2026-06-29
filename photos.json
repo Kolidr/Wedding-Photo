@@ -323,7 +323,8 @@
       "name": "1782745319338_23_IMG_2091.jpeg",
       "w": 1168,
       "h": 1752,
-      "size": "auto"
+      "size": "auto",
+      "fit": "cover"
     }
   ]
 }
