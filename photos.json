@@ -204,7 +204,8 @@
       "name": "1782745291345_6_IMG_2106.jpeg",
       "w": 1135,
       "h": 1396,
-      "size": "auto"
+      "size": "auto",
+      "fit": "cover"
     },
     {
       "name": "1782745293094_7_IMG_2108.jpeg",
