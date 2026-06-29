@@ -9,28 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
   :root{
-    --paper:      #f7f2ea;
-    --surface:    #ffffff;
-    --ink:        #2a201d;
-    --burgundy:   #7a2330;
-    --burgundy-d: #5d1922;
-    --gold:       #b3893f;
-    --gold-soft:  #c9a85f;
-    --muted:      #9a8c7c;
-    --line:       #e7ddcd;
-    --danger:     #9b3535;
-    --ff-display:'Cormorant Garamond', Georgia, serif;
-    --ff-body:   'Jost', system-ui, sans-serif;
+    --paper:#f7f2ea;--surface:#ffffff;--ink:#2a201d;
+    --burgundy:#7a2330;--burgundy-d:#5d1922;--gold:#b3893f;--gold-soft:#c9a85f;
+    --muted:#9a8c7c;--line:#e7ddcd;--danger:#9b3535;
+    --ff-display:'Cormorant Garamond',Georgia,serif;--ff-body:'Jost',system-ui,sans-serif;
   }
-
   html{scroll-behavior:smooth}
   body{background:var(--paper);color:var(--ink);font-family:var(--ff-body);font-weight:300;min-height:100vh}
 
   header{position:relative;text-align:center;padding:72px 24px 40px;
-    background:radial-gradient(ellipse 70% 100% at 50% 0%, rgba(122,35,48,.07) 0%, transparent 65%),var(--paper);
-    border-bottom:1px solid var(--line)}
+    background:radial-gradient(ellipse 70% 100% at 50% 0%, rgba(122,35,48,.07) 0%, transparent 65%),var(--paper);border-bottom:1px solid var(--line)}
   .eyebrow{font-size:10px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
   .h-title{font-family:var(--ff-display);font-size:clamp(32px,5.5vw,58px);font-weight:400;font-style:italic;line-height:1.1;color:var(--burgundy)}
   .h-title .amp{font-style:normal;color:var(--gold);font-weight:300;padding:0 .12em}
@@ -42,7 +31,7 @@
 
   .section-head{text-align:center;padding:46px 24px 8px}
   .section-head .s-eyebrow{font-family:var(--ff-display);font-style:italic;font-size:15px;color:var(--gold);margin-bottom:4px}
-  .section-head h2{font-family:var(--ff-display);font-size:clamp(24px,4vw,34px);font-weight:500;color:var(--ink);letter-spacing:.01em}
+  .section-head h2{font-family:var(--ff-display);font-size:clamp(24px,4vw,34px);font-weight:500;color:var(--ink)}
   .section-head .rule{width:46px;height:2px;background:var(--burgundy);margin:14px auto 0}
 
   .toolbar{position:sticky;top:0;z-index:90;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
@@ -50,7 +39,7 @@
   .tb-left{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);letter-spacing:.04em}
   .count{background:var(--surface);color:var(--burgundy);border:1px solid var(--line);font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px}
   .tb-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  .hint-inline{font-size:11px;color:var(--muted);letter-spacing:.02em;display:none}
+  .hint-inline{font-size:11px;color:var(--muted);display:none}
   body.is-admin .hint-inline{display:inline}
 
   .btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:4px;font-family:var(--ff-body);font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1px solid;transition:all .18s}
@@ -62,35 +51,31 @@
   .admin-only{display:none}
   body.is-admin .admin-only{display:inline-flex}
 
+  /* ── АВТО-МОЗАИКА ── */
   .gallery-wrap{padding:24px 32px 8px}
-  .gallery{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);grid-auto-rows:12px;gap:12px;grid-auto-flow:row dense}
-  @media(max-width:1100px){.gallery{--cols:3}}
-  @media(max-width:760px){.gallery{--cols:2}}
+  .gallery{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);grid-auto-rows:var(--rowh,250px);gap:12px;grid-auto-flow:dense}
+  @media(max-width:1200px){.gallery{--cols:3;--rowh:230px}}
+  @media(max-width:760px){.gallery{--cols:2;--rowh:185px}}
+  @media(max-width:430px){.gallery{--cols:2;--rowh:150px}}
 
   .g-item{
-    grid-column:span var(--cspan,1);
-    grid-row:span var(--rspan,13);
-    position:relative;overflow:hidden;border-radius:3px;
-    background:var(--surface);border:1px solid var(--line);cursor:pointer;
-    box-shadow:0 1px 2px rgba(42,32,29,.04);
-    transition:box-shadow .25s,transform .25s;
-  }
+    grid-column:span var(--cspan,1);grid-row:span var(--rspan,1);
+    position:relative;overflow:hidden;border-radius:3px;background:var(--surface);border:1px solid var(--line);
+    cursor:pointer;box-shadow:0 1px 2px rgba(42,32,29,.04);transition:box-shadow .25s,transform .25s}
   .g-item:hover{box-shadow:0 14px 30px rgba(93,25,34,.18);transform:translateY(-2px)}
-  .g-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+  .g-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#efe7d9;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
   .g-item:hover img{transform:scale(1.05)}
 
-  .size-ctl{position:absolute;top:10px;left:10px;display:none;align-items:center;z-index:3;
-    border-radius:5px;overflow:hidden;border:1px solid rgba(255,255,255,.45);
-    background:rgba(42,18,22,.6);backdrop-filter:blur(2px)}
+  .size-ctl{position:absolute;top:10px;left:10px;display:none;align-items:center;z-index:3;border-radius:5px;overflow:hidden;border:1px solid rgba(255,255,255,.45);background:rgba(42,18,22,.6);backdrop-filter:blur(2px)}
   body.is-admin .g-item:hover .size-ctl{display:inline-flex}
   .size-ctl button{border:none;background:transparent;color:#fff;width:32px;height:30px;font-size:17px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
   .size-ctl button:hover{background:rgba(255,255,255,.2)}
   .size-ctl button:disabled{opacity:.3;cursor:default}
-  .size-ctl .lvl{font-size:10px;letter-spacing:.08em;color:#fff;opacity:.85;padding:0 7px;border-left:1px solid rgba(255,255,255,.3);border-right:1px solid rgba(255,255,255,.3);min-width:30px;text-align:center}
+  .size-ctl .lvl{font-size:10px;letter-spacing:.06em;color:#fff;opacity:.9;padding:0 8px;border-left:1px solid rgba(255,255,255,.3);border-right:1px solid rgba(255,255,255,.3);min-width:48px;text-align:center;text-transform:uppercase}
 
   .g-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(42,18,22,.78) 0%, transparent 55%);opacity:0;transition:opacity .28s;display:flex;align-items:flex-end;justify-content:space-between;padding:14px;z-index:2}
   .g-item:hover .g-overlay{opacity:1}
-  .pill{display:inline-flex;align-items:center;gap:6px;border-radius:3px;padding:6px 11px;font-size:11px;font-family:var(--ff-body);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:1px solid;transition:background .18s}
+  .pill{display:inline-flex;align-items:center;gap:6px;border-radius:3px;padding:6px 11px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:1px solid;transition:background .18s}
   .pill-open{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.45);color:#fff}
   .pill-open:hover{background:rgba(255,255,255,.3)}
   .pill-del{background:rgba(155,53,53,.25);border-color:rgba(255,255,255,.35);color:#fff;display:none}
@@ -140,12 +125,7 @@
   footer .fn{font-family:var(--ff-display);font-style:italic;font-size:18px;color:var(--burgundy)}
   footer .fs{font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
 
-  @media(max-width:640px){
-    header{padding:54px 20px 32px}
-    .toolbar{padding:12px 16px}
-    .gallery-wrap{padding:16px}
-    .modal{padding:24px 20px}
-  }
+  @media(max-width:640px){header{padding:54px 20px 32px}.toolbar{padding:12px 16px}.gallery-wrap{padding:16px}.modal{padding:24px 20px}}
 </style>
 </head>
 <body>
@@ -169,7 +149,7 @@
   <div class="tb-left">
     <span>Фотографий</span>
     <span class="count" id="count">0</span>
-    <span class="hint-inline">· наведите на фото и меняйте размер кнопками − / +</span>
+    <span class="hint-inline">· раскладка авто; наведите на фото для «крупнее»</span>
   </div>
   <div class="tb-right">
     <label class="btn btn-primary admin-only" style="cursor:pointer">
@@ -181,7 +161,7 @@
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
       Войти
     </button>
-    <button class="btn btn-ghost admin-only" onclick="logout()" title="Выйти из режима редактирования">
+    <button class="btn btn-ghost admin-only" onclick="logout()" title="Выйти">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
       Выйти
     </button>
@@ -216,10 +196,8 @@
   <div class="modal">
     <h2>Вход для редактирования</h2>
     <p class="sub">Просмотр галереи открыт всем. Чтобы <strong>загружать, удалять и менять размер</strong> фото, введите пароль.</p>
-    <div class="field">
-      <label>Пароль</label>
-      <input type="password" id="loginPw" placeholder="••••••••" onkeydown="if(event.key==='Enter')submitLogin()"/>
-    </div>
+    <div class="field"><label>Пароль</label>
+      <input type="password" id="loginPw" placeholder="••••••••" onkeydown="if(event.key==='Enter')submitLogin()"/></div>
     <div class="m-actions">
       <button class="btn btn-ghost" onclick="closeLogin()">Отмена</button>
       <button class="btn btn-primary" onclick="submitLogin()">Войти</button>
@@ -231,15 +209,11 @@
   <div class="modal">
     <h2>Настройка доступа</h2>
     <p class="sub">Нужно сделать <strong>один раз</strong>. После этого вход на любом устройстве — только по паролю.</p>
-    <div class="field">
-      <label>GitHub имя пользователя</label>
+    <div class="field"><label>GitHub имя пользователя</label>
       <input type="text" id="setOwner" placeholder="ваш-логин"/>
-      <div class="hint">Определяется автоматически — заполните, если поле пустое.</div>
-    </div>
-    <div class="field">
-      <label>Репозиторий</label>
-      <input type="text" id="setRepo" placeholder="Wedding-Photo"/>
-    </div>
+      <div class="hint">Определяется автоматически — заполните, если поле пустое.</div></div>
+    <div class="field"><label>Репозиторий</label>
+      <input type="text" id="setRepo" placeholder="Wedding-Photo"/></div>
     <div class="divider"></div>
     <h3>Создать / обновить доступ</h3>
     <p class="sub" style="margin:6px 0 16px">
@@ -247,15 +221,11 @@
       <a href="https://github.com/settings/tokens/new" target="_blank">создать токен</a>.
       Он будет зашифрован вашим паролем и сохранён в репозитории. В открытом виде токен нигде не хранится.
     </p>
-    <div class="field">
-      <label>Personal Access Token</label>
-      <input type="password" id="setToken" placeholder="ghp_xxxxxxxxxxxx"/>
-    </div>
-    <div class="field">
-      <label>Пароль для входа</label>
+    <div class="field"><label>Personal Access Token</label>
+      <input type="password" id="setToken" placeholder="ghp_xxxxxxxxxxxx"/></div>
+    <div class="field"><label>Пароль для входа</label>
       <input type="password" id="setPw" placeholder="придумайте пароль"/>
-      <div class="hint">Этот пароль вы дадите тому, кто будет наполнять галерею. Его нельзя восстановить — только пересоздать доступ.</div>
-    </div>
+      <div class="hint">Этот пароль вы дадите тому, кто будет наполнять галерею. Его нельзя восстановить — только пересоздать доступ.</div></div>
     <div class="m-actions">
       <button class="btn btn-ghost" onclick="closeSettings()">Закрыть</button>
       <button class="btn btn-primary" onclick="setupAccess()">Сохранить доступ</button>
@@ -269,141 +239,168 @@
 let LIST = [];
 let TOKEN = sessionStorage.getItem('wph_tok') || null;
 let lbIndex = 0;
+const localBlobs = {};                 // имя -> object URL только что загруженного файла (мгновенный показ)
+const SIZE_LABELS = ['авто','шире','крупно'];
 
-const SCALE = [
-  {c:1, r:9},
-  {c:1, r:13},
-  {c:2, r:13},
-  {c:2, r:18},
-  {c:2, r:23},
-];
-const DEFAULT_SIZE = 1;
-const clampSize = s => Math.max(0, Math.min(SCALE.length-1, s|0));
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
-function repoInfo(){
-  const o = localStorage.getItem('wph_owner');
-  const r = localStorage.getItem('wph_repo');
-  if(o && r) return {owner:o, repo:r};
-  const host = location.hostname;
-  if(host.endsWith('github.io')){
-    const owner = host.split('.')[0];
-    const seg = location.pathname.split('/').filter(Boolean)[0];
-    return {owner, repo: seg || 'Wedding-Photo'};
-  }
-  return {owner:'', repo:''};
+/* ── размеры плиток ── */
+function spanFor(w,h){
+  if(!w||!h) return {c:1,r:1};
+  const r=w/h;
+  if(r>=1.28) return {c:2,r:1};        // горизонтальная -> шире (2 колонки)
+  if(r<=0.78) return {c:1,r:2};        // вертикальная   -> выше  (2 ряда)
+  return {c:1,r:1};                    // квадратная
 }
+function tileSpan(p){
+  const a=spanFor(p.w,p.h); const s=p.size||0;
+  if(s===1) return {c:2, r:Math.max(a.r,1)};   // «шире»
+  if(s>=2)  return {c:2, r:2};                 // «крупно» (акцент)
+  return a;                                     // «авто»
+}
+
+/* ── источники картинок: blob (мгновенно) -> raw.githubusercontent -> ./photos ── */
+function repoInfo(){
+  const o=localStorage.getItem('wph_owner'), r=localStorage.getItem('wph_repo');
+  if(o&&r) return {owner:o,repo:r};
+  const host=location.hostname;
+  if(host.endsWith('github.io')){
+    const owner=host.split('.')[0];
+    const seg=location.pathname.split('/').filter(Boolean)[0];
+    return {owner,repo:seg||'Wedding-Photo'};
+  }
+  return {owner:'',repo:''};
+}
+function rawUrl(name){ const {owner,repo}=repoInfo(); return (owner&&repo)?`https://raw.githubusercontent.com/${owner}/${repo}/main/photos/${encodeURIComponent(name)}`:('./photos/'+encodeURIComponent(name)); }
+function relUrl(name){ return './photos/'+encodeURIComponent(name); }
+function primarySrc(name){ return localBlobs[name] || rawUrl(name); }
+
 function ghBase(){ const {owner,repo}=repoInfo(); return `https://api.github.com/repos/${owner}/${repo}/contents`; }
 function ghHeaders(){ return {'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'}; }
 function b64utf8(str){ return btoa(unescape(encodeURIComponent(str))); }
 function fileToB64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=()=>rej(new Error('read'));r.readAsDataURL(file);});}
+function imgDims(url){return new Promise(res=>{const im=new Image();im.onload=()=>res({w:im.naturalWidth||1,h:im.naturalHeight||1});im.onerror=()=>res({w:1,h:1});im.src=url;});}
 
 let toastT;
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+type;clearTimeout(toastT);toastT=setTimeout(()=>t.className='toast',3200);}
 function setProgress(p){const e=document.getElementById('progress');e.style.width=p+'%';if(p>=100)setTimeout(()=>e.style.width='0',500);}
 
+/* ── crypto ── */
 function u8(b64){return Uint8Array.from(atob(b64),c=>c.charCodeAt(0));}
 function b64bytes(arr){let s='';arr.forEach(b=>s+=String.fromCharCode(b));return btoa(s);}
-async function deriveKey(pw,salt){
-  const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
-  return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:120000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
-}
-async function encryptToken(token,pw){
-  const salt=crypto.getRandomValues(new Uint8Array(16));
-  const iv=crypto.getRandomValues(new Uint8Array(12));
-  const key=await deriveKey(pw,salt);
-  const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(token));
-  return {v:1,salt:b64bytes(salt),iv:b64bytes(iv),ct:b64bytes(new Uint8Array(ct))};
-}
-async function decryptToken(blob,pw){
-  const key=await deriveKey(pw,u8(blob.salt));
-  const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u8(blob.iv)},key,u8(blob.ct));
-  return new TextDecoder().decode(pt);
-}
+async function deriveKey(pw,salt){const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:120000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function encryptToken(token,pw){const salt=crypto.getRandomValues(new Uint8Array(16));const iv=crypto.getRandomValues(new Uint8Array(12));const key=await deriveKey(pw,salt);const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(token));return {v:1,salt:b64bytes(salt),iv:b64bytes(iv),ct:b64bytes(new Uint8Array(ct))};}
+async function decryptToken(blob,pw){const key=await deriveKey(pw,u8(blob.salt));const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u8(blob.iv)},key,u8(blob.ct));return new TextDecoder().decode(pt);}
 
+/* ── загрузка манифеста (raw -> относительный) ── */
+async function fetchManifest(){
+  const {owner,repo}=repoInfo();
+  const urls=[];
+  if(owner&&repo) urls.push(`https://raw.githubusercontent.com/${owner}/${repo}/main/photos.json?t=`+Date.now());
+  urls.push('./photos.json?t='+Date.now());
+  for(const u of urls){ try{ const r=await fetch(u,{cache:'no-store'}); if(r.ok) return await r.json(); }catch{} }
+  return {photos:[]};
+}
 async function loadGallery(){
-  try{
-    const r=await fetch('./photos.json?t='+Date.now(),{cache:'no-store'});
-    if(r.ok){ const d=await r.json(); LIST=Array.isArray(d.photos)?d.photos:[]; }
-    else LIST=[];
-  }catch{ LIST=[]; }
-  LIST=LIST.map(p=>({name:p.name, size:clampSize(p.size ?? DEFAULT_SIZE)}));
+  let d; try{ d=await fetchManifest(); }catch{ d={photos:[]}; }
+  const arr=Array.isArray(d.photos)?d.photos:[];
+  LIST=arr.map(p=>({name:p.name, w:p.w||0, h:p.h||0, size:(p.size|0)||0}));
   render();
 }
+
+/* ── рендер авто-мозаики ── */
 function render(){
-  const g=document.getElementById('gallery');
-  const empty=document.getElementById('empty');
+  const g=document.getElementById('gallery'), empty=document.getElementById('empty');
   document.getElementById('count').textContent=LIST.length;
   if(!LIST.length){ g.innerHTML=''; empty.style.display='block'; return; }
   empty.style.display='none';
+
   g.innerHTML=LIST.map((p,i)=>{
-    const sz=clampSize(p.size); const s=SCALE[sz];
-    const esc=p.name.replace(/'/g,"\\'");
-    return `
-    <div class="g-item" style="--cspan:${s.c};--rspan:${s.r}" onclick="openLb(${i})">
-      <img src="./photos/${encodeURIComponent(p.name)}" alt="${p.name}" loading="lazy"/>
+    const sp=tileSpan(p), sz=p.size||0;
+    return `<div class="g-item" data-i="${i}" style="--cspan:${sp.c};--rspan:${sp.r}">
+      <img alt="${esc(p.name)}" loading="lazy"/>
       <div class="size-ctl">
-        <button onclick="event.stopPropagation();setPhotoSize(${i},-1)" title="Мельче" ${sz===0?'disabled':''}>&minus;</button>
-        <span class="lvl">${sz+1}</span>
-        <button onclick="event.stopPropagation();setPhotoSize(${i},1)" title="Крупнее" ${sz===SCALE.length-1?'disabled':''}>+</button>
+        <button data-act="dec" ${sz===0?'disabled':''} title="Мельче">&minus;</button>
+        <span class="lvl">${SIZE_LABELS[sz]}</span>
+        <button data-act="inc" ${sz>=2?'disabled':''} title="Крупнее">+</button>
       </div>
       <div class="g-overlay">
-        <span class="pill pill-open" onclick="event.stopPropagation();openLb(${i})">
-          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Открыть
-        </span>
-        <span class="pill pill-del" onclick="deletePhoto('${esc}',event)" title="Удалить">
-          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg>
-        </span>
+        <span class="pill pill-open" data-act="open"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Открыть</span>
+        <span class="pill pill-del" data-act="del" title="Удалить"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg></span>
       </div>
     </div>`;
   }).join('');
+
+  g.querySelectorAll('.g-item').forEach(el=>{
+    const i=+el.dataset.i, p=LIST[i]; if(!p) return;
+    const img=el.querySelector('img');
+    img.dataset.fb='0';
+    img.onerror=()=>{ if(img.dataset.fb==='1')return; img.dataset.fb='1'; img.src=relUrl(p.name); };
+    img.onload=()=>onImgLoad(i,img);
+    img.src=primarySrc(p.name);
+    el.addEventListener('click',ev=>{
+      const act=ev.target.closest('[data-act]')?.dataset.act;
+      if(act==='dec'){ ev.stopPropagation(); setPhotoSize(i,-1); return; }
+      if(act==='inc'){ ev.stopPropagation(); setPhotoSize(i,1); return; }
+      if(act==='del'){ ev.stopPropagation(); deletePhoto(p.name); return; }
+      openLb(i);
+    });
+  });
+}
+/* измерить пропорции для старых фото без w/h и переразложить плитку */
+function onImgLoad(i,img){
+  const p=LIST[i]; if(!p) return;
+  if(!p.w||!p.h){
+    p.w=img.naturalWidth||1; p.h=img.naturalHeight||1;
+    if((p.size||0)===0){ const sp=spanFor(p.w,p.h); const el=img.closest('.g-item'); if(el){ el.style.setProperty('--cspan',sp.c); el.style.setProperty('--rspan',sp.r);} }
+  }
 }
 
+/* размер конкретного фото (сохраняется в репозиторий) */
 function setPhotoSize(i,d){
   if(!TOKEN){ openLogin(); return; }
-  const cur=clampSize(LIST[i].size ?? DEFAULT_SIZE);
-  const next=clampSize(cur+d);
+  const cur=LIST[i].size||0, next=Math.max(0,Math.min(2,cur+d));
   if(next===cur) return;
-  LIST[i].size=next;
-  render();
-  scheduleSave();
+  LIST[i].size=next; render(); scheduleSave();
 }
 let saveT;
-function scheduleSave(){
-  clearTimeout(saveT);
-  saveT=setTimeout(async()=>{
-    try{ await writeManifest(LIST); toast('Расположение сохранено','success'); }
-    catch(e){ toast('Не удалось сохранить расположение: '+e.message,'error'); }
-  },1400);
-}
+function scheduleSave(){ clearTimeout(saveT); saveT=setTimeout(async()=>{ try{ await writeManifest(LIST); toast('Расположение сохранено','success'); }catch(e){ toast('Не удалось сохранить: '+e.message,'error'); } },1400); }
 
+/* ── лайтбокс (полный размер) ── */
 function openLb(i){ lbIndex=i; showLb(); document.getElementById('lb').classList.add('open'); document.body.style.overflow='hidden'; }
-function showLb(){ const p=LIST[lbIndex]; document.getElementById('lbImg').src='./photos/'+encodeURIComponent(p.name); document.getElementById('lbCap').textContent=p.name; }
+function showLb(){ const p=LIST[lbIndex],img=document.getElementById('lbImg'); img.onerror=()=>{img.onerror=null;img.src=relUrl(p.name);}; img.src=primarySrc(p.name); document.getElementById('lbCap').textContent=p.name; }
 function closeLb(){ document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
 function lbNav(d){ lbIndex=(lbIndex+d+LIST.length)%LIST.length; showLb(); }
 document.addEventListener('keydown',e=>{ if(!document.getElementById('lb').classList.contains('open'))return; if(e.key==='Escape')closeLb(); if(e.key==='ArrowLeft')lbNav(-1); if(e.key==='ArrowRight')lbNav(1); });
 document.getElementById('lb').addEventListener('click',e=>{ if(e.target.id==='lb')closeLb(); });
 
+/* ── auth ── */
 function openLogin(){ document.getElementById('loginPw').value=''; document.getElementById('loginModal').classList.add('open'); setTimeout(()=>document.getElementById('loginPw').focus(),50); }
 function closeLogin(){ document.getElementById('loginModal').classList.remove('open'); }
 async function submitLogin(){
   const pw=document.getElementById('loginPw').value;
   if(!pw){ toast('Введите пароль','error'); return; }
   let blob;
-  try{ const r=await fetch('./auth.json?t='+Date.now(),{cache:'no-store'}); if(!r.ok)throw 0; blob=await r.json(); }
-  catch{ toast('Доступ ещё не настроен — откройте «Настройки»','error'); return; }
+  try{ const r=await fetchAuth(); blob=r; }catch{ toast('Доступ ещё не настроен — откройте «Настройки»','error'); return; }
   try{ const token=await decryptToken(blob,pw); enterAdmin(token); closeLogin(); toast('Вы вошли — можно редактировать','success'); }
   catch{ toast('Неверный пароль','error'); }
+}
+async function fetchAuth(){
+  const {owner,repo}=repoInfo(); const urls=[];
+  if(owner&&repo) urls.push(`https://raw.githubusercontent.com/${owner}/${repo}/main/auth.json?t=`+Date.now());
+  urls.push('./auth.json?t='+Date.now());
+  for(const u of urls){ try{ const r=await fetch(u,{cache:'no-store'}); if(r.ok) return await r.json(); }catch{} }
+  throw new Error('no auth');
 }
 function enterAdmin(token){ TOKEN=token; sessionStorage.setItem('wph_tok',token); document.body.classList.add('is-admin'); document.getElementById('loginBtn').style.display='none'; }
 function logout(){ TOKEN=null; sessionStorage.removeItem('wph_tok'); document.body.classList.remove('is-admin'); document.getElementById('loginBtn').style.display=''; toast('Вы вышли из режима редактирования'); }
 
+/* ── settings ── */
 function openSettings(){ const {owner,repo}=repoInfo(); document.getElementById('setOwner').value=owner; document.getElementById('setRepo').value=repo; document.getElementById('settingsModal').classList.add('open'); }
 function closeSettings(){ document.getElementById('settingsModal').classList.remove('open'); }
 async function setupAccess(){
-  const owner=document.getElementById('setOwner').value.trim();
-  const repo=document.getElementById('setRepo').value.trim();
-  const token=document.getElementById('setToken').value.trim();
-  const pw=document.getElementById('setPw').value;
+  const owner=document.getElementById('setOwner').value.trim(), repo=document.getElementById('setRepo').value.trim();
+  const token=document.getElementById('setToken').value.trim(), pw=document.getElementById('setPw').value;
   if(owner) localStorage.setItem('wph_owner',owner);
   if(repo) localStorage.setItem('wph_repo',repo);
   if(!token||!pw){ toast('Укажите токен и пароль','error'); return; }
@@ -411,53 +408,42 @@ async function setupAccess(){
   try{
     toast('Сохраняем доступ…');
     const blob=await encryptToken(token,pw);
-    let sha=null;
-    try{ const r=await fetch(ghBase()+'/auth.json',{headers:ghHeaders()}); if(r.ok)sha=(await r.json()).sha; }catch{}
+    let sha=null; try{ const r=await fetch(ghBase()+'/auth.json',{headers:ghHeaders()}); if(r.ok)sha=(await r.json()).sha; }catch{}
     const res=await fetch(ghBase()+'/auth.json',{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Set access',content:b64utf8(JSON.stringify(blob,null,2)),...(sha?{sha}:{})})});
     if(!res.ok){ const e=await res.json().catch(()=>({})); throw new Error(e.message||('HTTP '+res.status)); }
     await ensureManifest();
-    enterAdmin(token);
-    closeSettings();
-    toast('Доступ настроен. Вы вошли.','success');
+    enterAdmin(token); closeSettings(); toast('Доступ настроен. Вы вошли.','success');
   }catch(e){ TOKEN=sessionStorage.getItem('wph_tok')||null; toast('Ошибка: '+e.message,'error'); }
 }
 
+/* ── manifest (очередь + повтор при 409) ── */
 async function ensureManifest(){
   try{ const r=await fetch(ghBase()+'/photos.json',{headers:ghHeaders()}); if(r.ok)return; }catch{}
   await fetch(ghBase()+'/photos.json',{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Init manifest',content:b64utf8(JSON.stringify({photos:[]},null,2))})});
 }
-/* запись манифеста сериализована (очередь) + авто-повтор при конфликте sha (409/422) */
-let manifestChain = Promise.resolve();
+let manifestChain=Promise.resolve();
 function writeManifest(list){
-  const snapshot = JSON.parse(JSON.stringify(list));   // фиксируем состояние на момент вызова
-  const run = () => doWriteManifest(snapshot);
-  const next = manifestChain.then(run, run);           // ждём предыдущую запись, что бы с ней ни случилось
-  manifestChain = next.catch(()=>{});                  // цепочка не рвётся при ошибке
+  const snap=JSON.parse(JSON.stringify(list));
+  const run=()=>doWriteManifest(snap);
+  const next=manifestChain.then(run,run);
+  manifestChain=next.catch(()=>{});
   return next;
 }
 async function doWriteManifest(list){
-  const content = b64utf8(JSON.stringify({photos:list}, null, 2));
-  let lastErr = 'unknown';
-  for(let attempt=0; attempt<6; attempt++){
+  const content=b64utf8(JSON.stringify({photos:list},null,2));
+  let lastErr='unknown';
+  for(let a=0;a<6;a++){
     let sha=null;
-    try{
-      const r=await fetch(ghBase()+'/photos.json?t='+Date.now(),{headers:ghHeaders(),cache:'no-store'});
-      if(r.ok) sha=(await r.json()).sha;               // всегда берём свежий sha перед записью
-    }catch{}
-    const res=await fetch(ghBase()+'/photos.json',{method:'PUT',headers:ghHeaders(),
-      body:JSON.stringify({message:'Update gallery',content,...(sha?{sha}:{})})});
+    try{ const r=await fetch(ghBase()+'/photos.json?t='+Date.now(),{headers:ghHeaders(),cache:'no-store'}); if(r.ok)sha=(await r.json()).sha; }catch{}
+    const res=await fetch(ghBase()+'/photos.json',{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Update gallery',content,...(sha?{sha}:{})})});
     if(res.ok) return;
-    if(res.status===409 || res.status===422){           // конфликт версий — подождать и повторить со свежим sha
-      await new Promise(r=>setTimeout(r, 350*(attempt+1)));
-      lastErr='конфликт версий';
-      continue;
-    }
-    const e=await res.json().catch(()=>({}));
-    throw new Error(e.message || ('HTTP '+res.status));
+    if(res.status===409||res.status===422){ await new Promise(r=>setTimeout(r,350*(a+1))); lastErr='конфликт версий'; continue; }
+    const e=await res.json().catch(()=>({})); throw new Error(e.message||('HTTP '+res.status));
   }
   throw new Error(lastErr+' — попробуйте ещё раз');
 }
 
+/* ── upload / delete ── */
 async function uploadFiles(files){
   if(!TOKEN){ openLogin(); return; }
   const arr=Array.from(files); if(!arr.length)return;
@@ -467,11 +453,14 @@ async function uploadFiles(files){
     setProgress(Math.round((i/arr.length)*90));
     toast(`Загружаем ${i+1} из ${arr.length}…`);
     try{
+      const url=URL.createObjectURL(f);
+      const dim=await imgDims(url);
       const b64=await fileToB64(f);
       const name=Date.now()+'_'+i+'_'+f.name.replace(/[^A-Za-z0-9._-]/g,'_');
       const res=await fetch(ghBase()+'/photos/'+name,{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Add '+name,content:b64})});
       if(!res.ok){ const e=await res.json().catch(()=>({})); throw new Error(e.message||res.status); }
-      added.push({name, size:DEFAULT_SIZE});
+      localBlobs[name]=url;                       // мгновенный показ без ожидания GitHub
+      added.push({name, w:dim.w, h:dim.h, size:0});
     }catch(e){ toast('Ошибка загрузки: '+e.message,'error'); }
   }
   if(added.length){
@@ -484,21 +473,17 @@ async function uploadFiles(files){
   if(added.length) toast(`Добавлено ${added.length} фото`,'success');
 }
 
-async function deletePhoto(name,event){
-  event.stopPropagation();
+async function deletePhoto(name){
   if(!TOKEN){ openLogin(); return; }
   if(!confirm('Удалить эту фотографию?'))return;
   try{
     toast('Удаляем…');
     const meta=await fetch(ghBase()+'/photos/'+encodeURIComponent(name),{headers:ghHeaders()});
-    if(meta.ok){
-      const sha=(await meta.json()).sha;
-      await fetch(ghBase()+'/photos/'+encodeURIComponent(name),{method:'DELETE',headers:ghHeaders(),body:JSON.stringify({message:'Delete '+name,sha})});
-    }
+    if(meta.ok){ const sha=(await meta.json()).sha;
+      await fetch(ghBase()+'/photos/'+encodeURIComponent(name),{method:'DELETE',headers:ghHeaders(),body:JSON.stringify({message:'Delete '+name,sha})}); }
     LIST=LIST.filter(p=>p.name!==name);
-    await writeManifest(LIST);
-    render();
-    toast('Фото удалено','success');
+    if(localBlobs[name]){ URL.revokeObjectURL(localBlobs[name]); delete localBlobs[name]; }
+    await writeManifest(LIST); render(); toast('Фото удалено','success');
   }catch(e){ toast('Ошибка удаления: '+e.message,'error'); }
 }
 
