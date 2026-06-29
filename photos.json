@@ -40,7 +40,7 @@
       "w": 1200,
       "h": 1799,
       "size": "auto",
-      "fit": "cover"
+      "fit": "contain"
     },
     {
       "name": "1782722724585_5_IMG_2082.jpeg",
