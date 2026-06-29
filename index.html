@@ -2,8 +2,17 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Референсы свадебных фотографий — Елизавета & Роман · 5 сентября 2026</title>
+
+<meta name="theme-color" content="#7a2330" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icon-180.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Референсы" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -18,31 +27,27 @@
   html{scroll-behavior:smooth}
   body{background:var(--paper);color:var(--ink);font-family:var(--ff-body);font-weight:300;min-height:100vh}
 
-  header{position:relative;text-align:center;padding:72px 24px 40px;
-    background:radial-gradient(ellipse 70% 100% at 50% 0%, rgba(122,35,48,.07) 0%, transparent 65%),var(--paper);border-bottom:1px solid var(--line)}
-  .eyebrow{font-size:10px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
-  .h-title{font-family:var(--ff-display);font-size:clamp(32px,5.5vw,58px);font-weight:400;font-style:italic;line-height:1.1;color:var(--burgundy)}
-  .h-title .amp{font-style:normal;color:var(--gold);font-weight:300;padding:0 .12em}
-  .h-sub{font-family:var(--ff-display);font-size:clamp(14px,2vw,18px);font-weight:400;color:var(--muted);letter-spacing:.06em;margin-top:14px}
-  .ornament{display:flex;align-items:center;justify-content:center;gap:14px;max-width:280px;margin:26px auto 0}
+  /* ── HEADER (компактная) ── */
+  header{position:relative;text-align:center;padding:34px 20px 22px;
+    background:radial-gradient(ellipse 70% 100% at 50% 0%, rgba(122,35,48,.06) 0%, transparent 60%),var(--paper);border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:9.5px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .h-title{font-family:var(--ff-display);font-size:clamp(30px,5.2vw,52px);font-weight:400;font-style:italic;line-height:1.05;color:var(--burgundy)}
+  .h-sub{font-family:var(--ff-display);font-style:italic;font-size:clamp(13px,1.9vw,16px);font-weight:400;color:var(--muted);letter-spacing:.04em;margin-top:6px}
+  .ornament{display:flex;align-items:center;justify-content:center;gap:12px;max-width:240px;margin:14px auto 0}
   .ornament::before,.ornament::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-soft))}
   .ornament::after{background:linear-gradient(to left,transparent,var(--gold-soft))}
-  .ornament span{color:var(--burgundy);font-size:15px;line-height:1}
+  .ornament span{color:var(--burgundy);font-size:13px;line-height:1}
 
-  .section-head{text-align:center;padding:46px 24px 8px}
-  .section-head .s-eyebrow{font-family:var(--ff-display);font-style:italic;font-size:15px;color:var(--gold);margin-bottom:4px}
-  .section-head h2{font-family:var(--ff-display);font-size:clamp(24px,4vw,34px);font-weight:500;color:var(--ink)}
-  .section-head .rule{width:46px;height:2px;background:var(--burgundy);margin:14px auto 0}
-
-  .toolbar{position:sticky;top:0;z-index:90;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
-    padding:14px 32px;background:rgba(247,242,234,.92);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid var(--line)}
-  .tb-left{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+  /* ── TOOLBAR ── */
+  .toolbar{position:sticky;top:0;z-index:90;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    padding:10px 20px;background:rgba(247,242,234,.93);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid var(--line)}
+  .tb-left{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);letter-spacing:.03em}
   .count{background:var(--surface);color:var(--burgundy);border:1px solid var(--line);font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px}
-  .tb-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .tb-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .hint-inline{font-size:11px;color:var(--muted);display:none}
   body.is-admin .hint-inline{display:inline}
 
-  .btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:4px;font-family:var(--ff-body);font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1px solid;transition:all .18s}
+  .btn{display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border-radius:4px;font-family:var(--ff-body);font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;border:1px solid;transition:all .18s}
   .btn-primary{background:var(--burgundy);color:#fff;border-color:var(--burgundy)}
   .btn-primary:hover{background:var(--burgundy-d);border-color:var(--burgundy-d)}
   .btn-ghost{background:var(--surface);color:var(--muted);border-color:var(--line)}
@@ -51,81 +56,107 @@
   .admin-only{display:none}
   body.is-admin .admin-only{display:inline-flex}
 
-  /* ── АВТО-МОЗАИКА ── */
-  .gallery-wrap{padding:24px 32px 8px}
-  .gallery{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);grid-auto-rows:var(--rowh,250px);gap:12px;grid-auto-flow:dense}
-  @media(max-width:1200px){.gallery{--cols:3;--rowh:230px}}
-  @media(max-width:760px){.gallery{--cols:2;--rowh:185px}}
-  @media(max-width:430px){.gallery{--cols:2;--rowh:150px}}
+  /* ── МОЗАИКА ── */
+  .gallery-wrap{padding:18px 20px 8px}
+  .gallery{display:grid;grid-template-columns:repeat(var(--cols,6),1fr);grid-auto-rows:var(--rowh,200px);gap:10px;grid-auto-flow:dense;max-width:1400px;margin:0 auto}
 
-  .g-item{
-    grid-column:span var(--cspan,1);grid-row:span var(--rspan,1);
+  .g-item{grid-column:span var(--c,1);grid-row:span var(--r,1);
     position:relative;overflow:hidden;border-radius:3px;background:var(--surface);border:1px solid var(--line);
-    cursor:pointer;box-shadow:0 1px 2px rgba(42,32,29,.04);transition:box-shadow .25s,transform .25s}
-  .g-item:hover{box-shadow:0 14px 30px rgba(93,25,34,.18);transform:translateY(-2px)}
-  .g-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#efe7d9;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
-  .g-item:hover img{transform:scale(1.05)}
+    cursor:pointer;box-shadow:0 1px 2px rgba(42,32,29,.05);transition:box-shadow .25s,transform .25s}
+  .g-item:hover{box-shadow:0 12px 26px rgba(93,25,34,.16);transform:translateY(-2px)}
+  .g-item img{position:absolute;inset:0;width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+  .g-item.cover img{object-fit:cover}
+  .g-item.contain img{object-fit:contain;background:var(--paper)}
+  .g-item.cover:hover img{transform:scale(1.05)}      /* динамика только при обрезке */
 
-  .size-ctl{position:absolute;top:10px;left:10px;display:none;align-items:center;z-index:3;border-radius:5px;overflow:hidden;border:1px solid rgba(255,255,255,.45);background:rgba(42,18,22,.6);backdrop-filter:blur(2px)}
-  body.is-admin .g-item:hover .size-ctl{display:inline-flex}
-  .size-ctl button{border:none;background:transparent;color:#fff;width:32px;height:30px;font-size:17px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
-  .size-ctl button:hover{background:rgba(255,255,255,.2)}
-  .size-ctl button:disabled{opacity:.3;cursor:default}
-  .size-ctl .lvl{font-size:10px;letter-spacing:.06em;color:#fff;opacity:.9;padding:0 8px;border-left:1px solid rgba(255,255,255,.3);border-right:1px solid rgba(255,255,255,.3);min-width:48px;text-align:center;text-transform:uppercase}
+  /* overlay + controls */
+  .g-overlay{position:absolute;inset:0;opacity:0;transition:opacity .22s;z-index:2;pointer-events:none}
+  .g-item:hover .g-overlay,.g-item.active .g-overlay{opacity:1;pointer-events:auto}
+  .g-overlay::before{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(42,18,22,.72) 0%, transparent 42%, transparent 70%, rgba(42,18,22,.5) 100%)}
+  .ov{position:absolute;display:none;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.5);background:rgba(42,18,22,.55);backdrop-filter:blur(2px);color:#fff;cursor:pointer;border-radius:5px;transition:background .15s;z-index:3}
+  .ov:hover{background:rgba(42,18,22,.85)}
+  .ov:disabled{opacity:.3;cursor:default}
+  body.is-admin .g-item .ov.adm{display:flex}
+  .ov-prev{left:8px;top:50%;transform:translateY(-50%);width:30px;height:38px;font-size:16px}
+  .ov-next{right:8px;top:50%;transform:translateY(-50%);width:30px;height:38px;font-size:16px}
+  .ov-badge{position:absolute;left:8px;top:8px;display:none;font-size:11px;letter-spacing:.04em;color:#fff;background:rgba(42,18,22,.6);border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:2px 9px;z-index:3}
+  body.is-admin .g-item .ov-badge{display:inline-block}
+  .ov-size{right:8px;top:8px;width:32px;height:26px;font-size:12px;gap:3px}
+  .ov-fit{right:46px;top:8px;width:32px;height:26px;font-size:13px}
+  .ov-del{right:8px;bottom:8px;width:32px;height:30px}
+  .ov-open{position:absolute;left:8px;bottom:8px;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.18);color:#fff;border-radius:4px;padding:6px 10px;font-size:11px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;z-index:3}
+  .ov-open:hover{background:rgba(255,255,255,.32)}
 
-  .g-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(42,18,22,.78) 0%, transparent 55%);opacity:0;transition:opacity .28s;display:flex;align-items:flex-end;justify-content:space-between;padding:14px;z-index:2}
-  .g-item:hover .g-overlay{opacity:1}
-  .pill{display:inline-flex;align-items:center;gap:6px;border-radius:3px;padding:6px 11px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:1px solid;transition:background .18s}
-  .pill-open{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.45);color:#fff}
-  .pill-open:hover{background:rgba(255,255,255,.3)}
-  .pill-del{background:rgba(155,53,53,.25);border-color:rgba(255,255,255,.35);color:#fff;display:none}
-  body.is-admin .pill-del{display:inline-flex}
-  .pill-del:hover{background:rgba(155,53,53,.6)}
-
-  .empty{display:none;text-align:center;padding:72px 24px}
-  .empty svg{opacity:.25;margin-bottom:18px;color:var(--burgundy)}
-  .empty h3{font-family:var(--ff-display);font-style:italic;font-size:24px;font-weight:400;color:var(--muted)}
+  .empty{display:none;text-align:center;padding:64px 24px}
+  .empty svg{opacity:.25;margin-bottom:16px;color:var(--burgundy)}
+  .empty h3{font-family:var(--ff-display);font-style:italic;font-size:23px;font-weight:400;color:var(--muted)}
   .empty p{font-size:13px;color:var(--muted);opacity:.8;margin-top:6px}
 
+  /* ── LIGHTBOX ── */
   .lb{position:fixed;inset:0;background:rgba(28,16,18,.95);z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;animation:fade .25s ease}
   .lb.open{display:flex}
   @keyframes fade{from{opacity:0}to{opacity:1}}
   .lb-inner{position:relative;max-width:92vw;max-height:92vh;display:flex;flex-direction:column;align-items:center}
   .lb-inner img{max-width:100%;max-height:86vh;object-fit:contain;box-shadow:0 30px 70px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.08)}
   .lb-cap{margin-top:12px;font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase}
-  .lb-x{position:fixed;top:20px;right:24px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:background .18s;z-index:10}
+  .lb-x{position:fixed;top:max(20px,env(safe-area-inset-top));right:24px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:background .18s;z-index:10}
   .lb-x:hover{background:rgba(255,255,255,.2)}
   .lb-nav{position:fixed;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;transition:background .18s;z-index:10}
   .lb-nav:hover{background:rgba(255,255,255,.2)}
   .lb-prev{left:16px}.lb-next{right:16px}
 
+  /* ── MODALS ── */
   .backdrop{position:fixed;inset:0;background:rgba(42,18,22,.45);backdrop-filter:blur(3px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
   .backdrop.open{display:flex}
-  .modal{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:34px;width:100%;max-width:460px;box-shadow:0 30px 70px rgba(93,25,34,.22)}
-  .modal h2{font-family:var(--ff-display);font-style:italic;font-size:24px;font-weight:500;color:var(--burgundy);margin-bottom:6px}
-  .modal .sub{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:24px}
+  .modal{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:30px;width:100%;max-width:440px;box-shadow:0 30px 70px rgba(93,25,34,.22)}
+  .modal h2{font-family:var(--ff-display);font-style:italic;font-size:23px;font-weight:500;color:var(--burgundy);margin-bottom:6px}
+  .modal .sub{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:22px}
   .modal .sub a{color:var(--burgundy);text-decoration:none;border-bottom:1px solid var(--gold-soft)}
-  .field{margin-bottom:16px}
+  .field{margin-bottom:15px}
   .field label{display:block;font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
   .field input{width:100%;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:11px 14px;color:var(--ink);font-family:var(--ff-body);font-size:13px;font-weight:300;outline:none;transition:border-color .18s}
   .field input:focus{border-color:var(--gold)}
-  .field input::placeholder{color:var(--muted);opacity:.55}
+  .check{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink);margin-top:4px;cursor:pointer}
+  .check input{width:16px;height:16px;accent-color:var(--burgundy)}
   .field .hint{font-size:11px;color:var(--muted);margin-top:5px;opacity:.8}
-  .m-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:22px}
-  .divider{height:1px;background:var(--line);margin:24px 0}
+  .m-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+  .divider{height:1px;background:var(--line);margin:22px 0}
   .modal h3{font-family:var(--ff-display);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:4px}
 
-  .toast{position:fixed;bottom:24px;right:24px;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:12px 18px;font-size:13px;color:var(--ink);z-index:500;transform:translateY(80px);opacity:0;transition:all .3s;max-width:330px;box-shadow:0 12px 30px rgba(42,32,29,.14)}
+  /* size popover */
+  .sizemodal .pos{font-size:12px;color:var(--muted);margin-bottom:14px}
+  .sizemodal .pos b{color:var(--burgundy)}
+  .shape-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:8px}
+  .shape-grid button{border:1px solid var(--line);background:var(--paper);border-radius:5px;padding:8px 4px;cursor:pointer;font-size:11px;color:var(--ink);font-family:var(--ff-body);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:5px}
+  .shape-grid button:hover{border-color:var(--gold)}
+  .shape-grid button.sel{border-color:var(--burgundy);background:#fbeef0;color:var(--burgundy);font-weight:500}
+  .shape-grid .box{width:26px;height:26px;display:flex;align-items:center;justify-content:center}
+  .shape-grid .box i{display:block;background:var(--burgundy);opacity:.55;border-radius:2px}
+  .shape-grid button.sel .box i{opacity:1}
+  .fit-row{display:flex;gap:8px;margin-top:14px}
+  .fit-row button{flex:1;border:1px solid var(--line);background:var(--paper);border-radius:5px;padding:10px;cursor:pointer;font-size:11.5px;color:var(--ink);font-family:var(--ff-body);transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+  .fit-row button.sel{border-color:var(--burgundy);background:#fbeef0;color:var(--burgundy);font-weight:500}
+  .fit-lbl{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 0 2px}
+
+  .toast{position:fixed;bottom:max(20px,env(safe-area-inset-bottom));right:20px;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:12px 18px;font-size:13px;color:var(--ink);z-index:500;transform:translateY(80px);opacity:0;transition:all .3s;max-width:330px;box-shadow:0 12px 30px rgba(42,32,29,.14)}
   .toast.show{transform:translateY(0);opacity:1}
   .toast.success{border-color:var(--gold);color:var(--burgundy)}
   .toast.error{border-color:var(--danger);color:var(--danger)}
   .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--burgundy);z-index:1100;transition:width .3s}
 
-  footer{text-align:center;padding:44px 24px;border-top:1px solid var(--line);margin-top:32px}
+  footer{text-align:center;padding:38px 24px;border-top:1px solid var(--line);margin-top:28px}
   footer .fn{font-family:var(--ff-display);font-style:italic;font-size:18px;color:var(--burgundy)}
   footer .fs{font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
 
-  @media(max-width:640px){header{padding:54px 20px 32px}.toolbar{padding:12px 16px}.gallery-wrap{padding:16px}.modal{padding:24px 20px}}
+  @media(max-width:640px){
+    header{padding:24px 16px 16px}
+    .ornament{display:none}
+    .h-sub{margin-top:5px}
+    .toolbar{padding:9px 12px}
+    .gallery-wrap{padding:12px}
+    .modal{padding:22px 18px}
+    .shape-grid{grid-template-columns:repeat(5,1fr);gap:6px}
+  }
 </style>
 </head>
 <body>
@@ -134,22 +165,16 @@
 
 <header>
   <div class="eyebrow">Фотографические референсы</div>
-  <h1 class="h-title">Елизавета<span class="amp">&amp;</span>Роман</h1>
-  <div class="h-sub">5 сентября 2026 · Иркутск · Камерный театр-ресторан «Суаре»</div>
+  <h1 class="h-title">Елизавета &amp; Роман</h1>
+  <div class="h-sub">5 сентября 2026 · Иркутск · «Суаре»</div>
   <div class="ornament"><span>✦</span></div>
 </header>
 
-<div class="section-head">
-  <div class="s-eyebrow">Наша подборка</div>
-  <h2>Референсы для съёмки</h2>
-  <div class="rule"></div>
-</div>
-
 <div class="toolbar">
   <div class="tb-left">
-    <span>Фотографий</span>
+    <span>Фото</span>
     <span class="count" id="count">0</span>
-    <span class="hint-inline">· раскладка авто; наведите на фото для «крупнее»</span>
+    <span class="hint-inline">· раскладка авто; стрелки — порядок, ⤢ — размер</span>
   </div>
   <div class="tb-right">
     <label class="btn btn-primary admin-only" style="cursor:pointer">
@@ -176,7 +201,7 @@
   <div class="empty" id="empty">
     <svg width="46" height="46" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
     <h3>Пока нет фотографий</h3>
-    <p>Войдите под паролем и нажмите «Добавить», чтобы загрузить референсы</p>
+    <p>Войдите под паролем и нажмите «Добавить»</p>
   </div>
 </div>
 
@@ -192,12 +217,29 @@
   <div class="lb-inner"><img id="lbImg" src="" alt=""/><div class="lb-cap" id="lbCap"></div></div>
 </div>
 
+<!-- size + fit popover -->
+<div class="backdrop" id="sizePop">
+  <div class="modal sizemodal">
+    <h2>Размер и вид</h2>
+    <div class="pos">Позиция <b id="popPos">—</b></div>
+    <div class="fit-lbl">Формат</div>
+    <div class="shape-grid" id="shapeGrid"></div>
+    <div class="fit-lbl">Как заполнять</div>
+    <div class="fit-row">
+      <button id="fitCover" onclick="setFit('cover')">Заполнить<br>(обрезать)</button>
+      <button id="fitContain" onclick="setFit('contain')">Полностью<br>(с фоном)</button>
+    </div>
+    <div class="m-actions"><button class="btn btn-primary" onclick="closeSizePop()">Готово</button></div>
+  </div>
+</div>
+
 <div class="backdrop" id="loginModal">
   <div class="modal">
     <h2>Вход для редактирования</h2>
-    <p class="sub">Просмотр галереи открыт всем. Чтобы <strong>загружать, удалять и менять размер</strong> фото, введите пароль.</p>
+    <p class="sub">Просмотр открыт всем. Чтобы <strong>загружать, удалять, менять размер и порядок</strong> — введите пароль.</p>
     <div class="field"><label>Пароль</label>
       <input type="password" id="loginPw" placeholder="••••••••" onkeydown="if(event.key==='Enter')submitLogin()"/></div>
+    <label class="check"><input type="checkbox" id="rememberPw" checked/> Запомнить на этом устройстве</label>
     <div class="m-actions">
       <button class="btn btn-ghost" onclick="closeLogin()">Отмена</button>
       <button class="btn btn-primary" onclick="submitLogin()">Войти</button>
@@ -208,7 +250,7 @@
 <div class="backdrop" id="settingsModal">
   <div class="modal">
     <h2>Настройка доступа</h2>
-    <p class="sub">Нужно сделать <strong>один раз</strong>. После этого вход на любом устройстве — только по паролю.</p>
+    <p class="sub">Нужно сделать <strong>один раз</strong>. Затем вход на любом устройстве — по паролю.</p>
     <div class="field"><label>GitHub имя пользователя</label>
       <input type="text" id="setOwner" placeholder="ваш-логин"/>
       <div class="hint">Определяется автоматически — заполните, если поле пустое.</div></div>
@@ -219,13 +261,12 @@
     <p class="sub" style="margin:6px 0 16px">
       Токен с правом <strong>repo</strong> —
       <a href="https://github.com/settings/tokens/new" target="_blank">создать токен</a>.
-      Он будет зашифрован вашим паролем и сохранён в репозитории. В открытом виде токен нигде не хранится.
+      Он шифруется паролем и хранится в репозитории; в открытом виде нигде не лежит.
     </p>
     <div class="field"><label>Personal Access Token</label>
       <input type="password" id="setToken" placeholder="ghp_xxxxxxxxxxxx"/></div>
     <div class="field"><label>Пароль для входа</label>
-      <input type="password" id="setPw" placeholder="придумайте пароль"/>
-      <div class="hint">Этот пароль вы дадите тому, кто будет наполнять галерею. Его нельзя восстановить — только пересоздать доступ.</div></div>
+      <input type="password" id="setPw" placeholder="придумайте пароль"/></div>
     <div class="m-actions">
       <button class="btn btn-ghost" onclick="closeSettings()">Закрыть</button>
       <button class="btn btn-primary" onclick="setupAccess()">Сохранить доступ</button>
@@ -236,103 +277,124 @@
 <div class="toast" id="toast"></div>
 
 <script>
-let LIST = [];
-let TOKEN = sessionStorage.getItem('wph_tok') || null;
-let lbIndex = 0;
-const localBlobs = {};                 // имя -> object URL только что загруженного файла (мгновенный показ)
-const SIZE_LABELS = ['авто','шире','крупно'];
+let LIST=[];
+let TOKEN=localStorage.getItem('wph_tok')||null;   // постоянное хранение (запомнить пароль)
+let lbIndex=0, popIndex=-1;
+
+const PRESETS={ '1x1':[1,1],'2x1':[2,1],'1x2':[1,2],'2x2':[2,2],'3x1':[3,1],'1x3':[1,3],'3x2':[3,2],'2x3':[2,3],'3x3':[3,3] };
+const SHAPES=['auto','1x1','2x1','1x2','2x2','3x1','1x3','3x2','2x3','3x3'];
+const SHAPE_LABEL={auto:'Авто','1x1':'1×1','2x1':'2×1','1x2':'1×2','2x2':'2×2','3x1':'3×1','1x3':'1×3','3x2':'3×2','2x3':'2×3','3x3':'3×3'};
+const localBlobs={};
 
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
-/* ── размеры плиток ── */
-function spanFor(w,h){
-  if(!w||!h) return {c:1,r:1};
-  const r=w/h;
-  if(r>=1.28) return {c:2,r:1};        // горизонтальная -> шире (2 колонки)
-  if(r<=0.78) return {c:1,r:2};        // вертикальная   -> выше  (2 ряда)
-  return {c:1,r:1};                    // квадратная
+/* ── footprint (c×r) ── */
+function computeAuto(w,h){
+  if(!w||!h) return [1,1];
+  const ratio=w/h; let best=[1,1],err=1e9;
+  for(let c=1;c<=2;c++)for(let r=1;r<=2;r++){ const e=Math.abs(c/r-ratio)+0.05*c*r; if(e<err){err=e;best=[c,r];} }
+  return best;
 }
-function tileSpan(p){
-  const a=spanFor(p.w,p.h); const s=p.size||0;
-  if(s===1) return {c:2, r:Math.max(a.r,1)};   // «шире»
-  if(s>=2)  return {c:2, r:2};                 // «крупно» (акцент)
-  return a;                                     // «авто»
-}
+function tileCR(p){ if(!p.size||p.size==='auto') return computeAuto(p.w,p.h); return PRESETS[p.size]||[1,1]; }
+function fitOf(p){ return p.fit || ((!p.size||p.size==='auto')?'contain':'cover'); }
 
-/* ── источники картинок: blob (мгновенно) -> raw.githubusercontent -> ./photos ── */
+/* ── repo / sources ── */
 function repoInfo(){
-  const o=localStorage.getItem('wph_owner'), r=localStorage.getItem('wph_repo');
+  const o=localStorage.getItem('wph_owner'),r=localStorage.getItem('wph_repo');
   if(o&&r) return {owner:o,repo:r};
   const host=location.hostname;
-  if(host.endsWith('github.io')){
-    const owner=host.split('.')[0];
-    const seg=location.pathname.split('/').filter(Boolean)[0];
-    return {owner,repo:seg||'Wedding-Photo'};
-  }
+  if(host.endsWith('github.io')){ const owner=host.split('.')[0]; const seg=location.pathname.split('/').filter(Boolean)[0]; return {owner,repo:seg||'Wedding-Photo'}; }
   return {owner:'',repo:''};
 }
 function rawUrl(name){ const {owner,repo}=repoInfo(); return (owner&&repo)?`https://raw.githubusercontent.com/${owner}/${repo}/main/photos/${encodeURIComponent(name)}`:('./photos/'+encodeURIComponent(name)); }
 function relUrl(name){ return './photos/'+encodeURIComponent(name); }
-function primarySrc(name){ return localBlobs[name] || rawUrl(name); }
+function primarySrc(name){ return localBlobs[name]||rawUrl(name); }
 
 function ghBase(){ const {owner,repo}=repoInfo(); return `https://api.github.com/repos/${owner}/${repo}/contents`; }
 function ghHeaders(){ return {'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'}; }
-function b64utf8(str){ return btoa(unescape(encodeURIComponent(str))); }
+function b64utf8(s){ return btoa(unescape(encodeURIComponent(s))); }
 function fileToB64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=()=>rej(new Error('read'));r.readAsDataURL(file);});}
 function imgDims(url){return new Promise(res=>{const im=new Image();im.onload=()=>res({w:im.naturalWidth||1,h:im.naturalHeight||1});im.onerror=()=>res({w:1,h:1});im.src=url;});}
 
 let toastT;
-function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+type;clearTimeout(toastT);toastT=setTimeout(()=>t.className='toast',3200);}
+function toast(m,t=''){const el=document.getElementById('toast');el.textContent=m;el.className='toast show '+t;clearTimeout(toastT);toastT=setTimeout(()=>el.className='toast',3200);}
 function setProgress(p){const e=document.getElementById('progress');e.style.width=p+'%';if(p>=100)setTimeout(()=>e.style.width='0',500);}
 
 /* ── crypto ── */
-function u8(b64){return Uint8Array.from(atob(b64),c=>c.charCodeAt(0));}
-function b64bytes(arr){let s='';arr.forEach(b=>s+=String.fromCharCode(b));return btoa(s);}
+function u8(b){return Uint8Array.from(atob(b),c=>c.charCodeAt(0));}
+function b64b(a){let s='';a.forEach(b=>s+=String.fromCharCode(b));return btoa(s);}
 async function deriveKey(pw,salt){const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:120000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
-async function encryptToken(token,pw){const salt=crypto.getRandomValues(new Uint8Array(16));const iv=crypto.getRandomValues(new Uint8Array(12));const key=await deriveKey(pw,salt);const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(token));return {v:1,salt:b64bytes(salt),iv:b64bytes(iv),ct:b64bytes(new Uint8Array(ct))};}
-async function decryptToken(blob,pw){const key=await deriveKey(pw,u8(blob.salt));const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u8(blob.iv)},key,u8(blob.ct));return new TextDecoder().decode(pt);}
+async function encryptToken(t,pw){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));const k=await deriveKey(pw,salt);const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,new TextEncoder().encode(t));return {v:1,salt:b64b(salt),iv:b64b(iv),ct:b64b(new Uint8Array(ct))};}
+async function decryptToken(blob,pw){const k=await deriveKey(pw,u8(blob.salt));const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u8(blob.iv)},k,u8(blob.ct));return new TextDecoder().decode(pt);}
 
-/* ── загрузка манифеста (raw -> относительный) ── */
+/* ── размер ячейки = ширине колонки (квадрат) ── */
+function colsForWidth(){ return window.innerWidth<640?3:6; }
+function syncCells(){
+  const g=document.getElementById('gallery'); if(!g)return;
+  const cols=colsForWidth(); const gap=10;
+  const w=g.clientWidth||g.parentElement.clientWidth;
+  const colW=Math.max(60,(w-(cols-1)*gap)/cols);
+  g.style.setProperty('--cols',cols);
+  g.style.setProperty('--rowh',colW+'px');
+}
+window.addEventListener('resize',syncCells);
+
+/* ── манифест ── */
 async function fetchManifest(){
-  const {owner,repo}=repoInfo();
-  const urls=[];
+  const {owner,repo}=repoInfo(); const urls=[];
   if(owner&&repo) urls.push(`https://raw.githubusercontent.com/${owner}/${repo}/main/photos.json?t=`+Date.now());
   urls.push('./photos.json?t='+Date.now());
   for(const u of urls){ try{ const r=await fetch(u,{cache:'no-store'}); if(r.ok) return await r.json(); }catch{} }
   return {photos:[]};
 }
+function migrate(p){
+  let size=p.size;
+  if(size===0||size==='0'||size===undefined||size===null) size='auto';
+  else if(size===1||size==='1') size='2x1';
+  else if(size===2||size==='2') size='2x2';
+  if(!(size==='auto'||PRESETS[size])) size='auto';
+  return {name:p.name, w:p.w||0, h:p.h||0, size, fit:(p.fit==='cover'||p.fit==='contain')?p.fit:undefined};
+}
 async function loadGallery(){
   let d; try{ d=await fetchManifest(); }catch{ d={photos:[]}; }
-  const arr=Array.isArray(d.photos)?d.photos:[];
-  LIST=arr.map(p=>({name:p.name, w:p.w||0, h:p.h||0, size:(p.size|0)||0}));
+  LIST=(Array.isArray(d.photos)?d.photos:[]).map(migrate);
   render();
 }
 
-/* ── рендер авто-мозаики ── */
+/* ── рендер ── */
+function shapeBoxHTML(sz){
+  let c=1,r=1;
+  if(sz==='auto'){ return '<div class="box" style="font-size:11px;color:var(--burgundy)">A</div>'; }
+  [c,r]=PRESETS[sz]||[1,1];
+  const u=8, w=c*u, h=r*u;
+  return `<div class="box"><i style="width:${w}px;height:${h}px"></i></div>`;
+}
 function render(){
   const g=document.getElementById('gallery'), empty=document.getElementById('empty');
   document.getElementById('count').textContent=LIST.length;
-  if(!LIST.length){ g.innerHTML=''; empty.style.display='block'; return; }
+  if(!LIST.length){ g.innerHTML=''; empty.style.display='block'; syncCells(); return; }
   empty.style.display='none';
 
   g.innerHTML=LIST.map((p,i)=>{
-    const sp=tileSpan(p), sz=p.size||0;
-    return `<div class="g-item" data-i="${i}" style="--cspan:${sp.c};--rspan:${sp.r}">
+    const [c,r]=tileCR(p), fit=fitOf(p);
+    return `<div class="g-item ${fit}" data-i="${i}" style="--c:${c};--r:${r}">
       <img alt="${esc(p.name)}" loading="lazy"/>
-      <div class="size-ctl">
-        <button data-act="dec" ${sz===0?'disabled':''} title="Мельче">&minus;</button>
-        <span class="lvl">${SIZE_LABELS[sz]}</span>
-        <button data-act="inc" ${sz>=2?'disabled':''} title="Крупнее">+</button>
-      </div>
       <div class="g-overlay">
-        <span class="pill pill-open" data-act="open"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Открыть</span>
-        <span class="pill pill-del" data-act="del" title="Удалить"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg></span>
+        <span class="ov-badge">${i+1} / ${LIST.length}</span>
+        <button class="ov adm ov-prev" data-act="prev" title="Левее (ближе к началу)" ${i===0?'disabled':''}>&#8249;</button>
+        <button class="ov adm ov-next" data-act="next" title="Правее (дальше от начала)" ${i===LIST.length-1?'disabled':''}>&#8250;</button>
+        <button class="ov adm ov-fit" data-act="fit" title="Обрезать / показать целиком">${fit==='contain'?'▣':'▢'}</button>
+        <button class="ov adm ov-size" data-act="size" title="Размер">⤢</button>
+        <button class="ov adm ov-del" data-act="del" title="Удалить">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg>
+        </button>
+        <button class="ov-open" data-act="open"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Открыть</button>
       </div>
     </div>`;
   }).join('');
 
   g.querySelectorAll('.g-item').forEach(el=>{
-    const i=+el.dataset.i, p=LIST[i]; if(!p) return;
+    const i=+el.dataset.i, p=LIST[i]; if(!p)return;
     const img=el.querySelector('img');
     img.dataset.fb='0';
     img.onerror=()=>{ if(img.dataset.fb==='1')return; img.dataset.fb='1'; img.src=relUrl(p.name); };
@@ -340,35 +402,67 @@ function render(){
     img.src=primarySrc(p.name);
     el.addEventListener('click',ev=>{
       const act=ev.target.closest('[data-act]')?.dataset.act;
-      if(act==='dec'){ ev.stopPropagation(); setPhotoSize(i,-1); return; }
-      if(act==='inc'){ ev.stopPropagation(); setPhotoSize(i,1); return; }
-      if(act==='del'){ ev.stopPropagation(); deletePhoto(p.name); return; }
-      openLb(i);
+      if(act){ ev.stopPropagation();
+        if(act==='prev') moveBy(i,-1);
+        else if(act==='next') moveBy(i,1);
+        else if(act==='fit') toggleFit(i);
+        else if(act==='size') openSizePop(i);
+        else if(act==='del') deletePhoto(p.name);
+        else if(act==='open') openLb(i);
+        return;
+      }
+      if(document.body.classList.contains('is-admin')){
+        const wasActive=el.classList.contains('active');
+        document.querySelectorAll('.g-item.active').forEach(x=>x.classList.remove('active'));
+        if(!wasActive) el.classList.add('active');
+      } else openLb(i);
     });
   });
+  syncCells();
 }
-/* измерить пропорции для старых фото без w/h и переразложить плитку */
 function onImgLoad(i,img){
-  const p=LIST[i]; if(!p) return;
+  const p=LIST[i]; if(!p)return;
   if(!p.w||!p.h){
     p.w=img.naturalWidth||1; p.h=img.naturalHeight||1;
-    if((p.size||0)===0){ const sp=spanFor(p.w,p.h); const el=img.closest('.g-item'); if(el){ el.style.setProperty('--cspan',sp.c); el.style.setProperty('--rspan',sp.r);} }
+    if(!p.size||p.size==='auto'){ const [c,r]=computeAuto(p.w,p.h); const el=img.closest('.g-item'); if(el){el.style.setProperty('--c',c);el.style.setProperty('--r',r);} }
   }
 }
 
-/* размер конкретного фото (сохраняется в репозиторий) */
-function setPhotoSize(i,d){
+/* ── порядок ── */
+function moveBy(i,d){
   if(!TOKEN){ openLogin(); return; }
-  const cur=LIST[i].size||0, next=Math.max(0,Math.min(2,cur+d));
-  if(next===cur) return;
-  LIST[i].size=next; render(); scheduleSave();
+  const j=i+d; if(j<0||j>=LIST.length)return;
+  const t=LIST[i]; LIST[i]=LIST[j]; LIST[j]=t;
+  render(); scheduleSave();
 }
-let saveT;
-function scheduleSave(){ clearTimeout(saveT); saveT=setTimeout(async()=>{ try{ await writeManifest(LIST); toast('Расположение сохранено','success'); }catch(e){ toast('Не удалось сохранить: '+e.message,'error'); } },1400); }
 
-/* ── лайтбокс (полный размер) ── */
+/* ── размер / вид ── */
+function openSizePop(i){
+  if(!TOKEN){ openLogin(); return; }
+  popIndex=i; refreshSizePop();
+  document.getElementById('sizePop').classList.add('open');
+}
+function refreshSizePop(){
+  const p=LIST[popIndex]; if(!p)return;
+  document.getElementById('popPos').textContent=(popIndex+1)+' из '+LIST.length;
+  const grid=document.getElementById('shapeGrid');
+  const cur=(!p.size?'auto':p.size);
+  grid.innerHTML=SHAPES.map(s=>`<button class="${s===cur?'sel':''}" onclick="setShape('${s}')">${shapeBoxHTML(s)}<span>${SHAPE_LABEL[s]}</span></button>`).join('');
+  const fit=fitOf(p);
+  document.getElementById('fitCover').classList.toggle('sel',fit==='cover');
+  document.getElementById('fitContain').classList.toggle('sel',fit==='contain');
+}
+function setShape(s){ const p=LIST[popIndex]; if(!p)return; p.size=s; if(s==='auto') p.fit=undefined; render(); refreshSizePop(); scheduleSave(); }
+function setFit(f){ const p=LIST[popIndex]; if(!p)return; p.fit=f; render(); refreshSizePop(); scheduleSave(); }
+function toggleFit(i){ if(!TOKEN){openLogin();return;} const p=LIST[i]; p.fit=(fitOf(p)==='cover')?'contain':'cover'; render(); scheduleSave(); }
+function closeSizePop(){ document.getElementById('sizePop').classList.remove('open'); popIndex=-1; }
+
+let saveT;
+function scheduleSave(){ clearTimeout(saveT); saveT=setTimeout(async()=>{ try{ await writeManifest(LIST); toast('Сохранено','success'); }catch(e){ toast('Не удалось сохранить: '+e.message,'error'); } },1200); }
+
+/* ── lightbox ── */
 function openLb(i){ lbIndex=i; showLb(); document.getElementById('lb').classList.add('open'); document.body.style.overflow='hidden'; }
-function showLb(){ const p=LIST[lbIndex],img=document.getElementById('lbImg'); img.onerror=()=>{img.onerror=null;img.src=relUrl(p.name);}; img.src=primarySrc(p.name); document.getElementById('lbCap').textContent=p.name; }
+function showLb(){ const p=LIST[lbIndex],img=document.getElementById('lbImg'); img.onerror=()=>{img.onerror=null;img.src=relUrl(p.name);}; img.src=primarySrc(p.name); document.getElementById('lbCap').textContent=(lbIndex+1)+' / '+LIST.length; }
 function closeLb(){ document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
 function lbNav(d){ lbIndex=(lbIndex+d+LIST.length)%LIST.length; showLb(); }
 document.addEventListener('keydown',e=>{ if(!document.getElementById('lb').classList.contains('open'))return; if(e.key==='Escape')closeLb(); if(e.key==='ArrowLeft')lbNav(-1); if(e.key==='ArrowRight')lbNav(1); });
@@ -377,14 +471,6 @@ document.getElementById('lb').addEventListener('click',e=>{ if(e.target.id==='lb
 /* ── auth ── */
 function openLogin(){ document.getElementById('loginPw').value=''; document.getElementById('loginModal').classList.add('open'); setTimeout(()=>document.getElementById('loginPw').focus(),50); }
 function closeLogin(){ document.getElementById('loginModal').classList.remove('open'); }
-async function submitLogin(){
-  const pw=document.getElementById('loginPw').value;
-  if(!pw){ toast('Введите пароль','error'); return; }
-  let blob;
-  try{ const r=await fetchAuth(); blob=r; }catch{ toast('Доступ ещё не настроен — откройте «Настройки»','error'); return; }
-  try{ const token=await decryptToken(blob,pw); enterAdmin(token); closeLogin(); toast('Вы вошли — можно редактировать','success'); }
-  catch{ toast('Неверный пароль','error'); }
-}
 async function fetchAuth(){
   const {owner,repo}=repoInfo(); const urls=[];
   if(owner&&repo) urls.push(`https://raw.githubusercontent.com/${owner}/${repo}/main/auth.json?t=`+Date.now());
@@ -392,17 +478,28 @@ async function fetchAuth(){
   for(const u of urls){ try{ const r=await fetch(u,{cache:'no-store'}); if(r.ok) return await r.json(); }catch{} }
   throw new Error('no auth');
 }
-function enterAdmin(token){ TOKEN=token; sessionStorage.setItem('wph_tok',token); document.body.classList.add('is-admin'); document.getElementById('loginBtn').style.display='none'; }
-function logout(){ TOKEN=null; sessionStorage.removeItem('wph_tok'); document.body.classList.remove('is-admin'); document.getElementById('loginBtn').style.display=''; toast('Вы вышли из режима редактирования'); }
+async function submitLogin(){
+  const pw=document.getElementById('loginPw').value;
+  const remember=document.getElementById('rememberPw').checked;
+  if(!pw){ toast('Введите пароль','error'); return; }
+  let blob; try{ blob=await fetchAuth(); }catch{ toast('Доступ ещё не настроен — откройте «Настройки»','error'); return; }
+  try{ const token=await decryptToken(blob,pw); enterAdmin(token,remember); closeLogin(); toast('Вы вошли','success'); }
+  catch{ toast('Неверный пароль','error'); }
+}
+function enterAdmin(token,remember){
+  TOKEN=token;
+  if(remember!==false) localStorage.setItem('wph_tok',token); else sessionStorage.setItem('wph_tok',token);
+  document.body.classList.add('is-admin'); document.getElementById('loginBtn').style.display='none';
+}
+function logout(){ TOKEN=null; localStorage.removeItem('wph_tok'); sessionStorage.removeItem('wph_tok'); document.body.classList.remove('is-admin'); document.getElementById('loginBtn').style.display=''; document.querySelectorAll('.g-item.active').forEach(x=>x.classList.remove('active')); toast('Вы вышли'); }
 
 /* ── settings ── */
 function openSettings(){ const {owner,repo}=repoInfo(); document.getElementById('setOwner').value=owner; document.getElementById('setRepo').value=repo; document.getElementById('settingsModal').classList.add('open'); }
 function closeSettings(){ document.getElementById('settingsModal').classList.remove('open'); }
 async function setupAccess(){
-  const owner=document.getElementById('setOwner').value.trim(), repo=document.getElementById('setRepo').value.trim();
-  const token=document.getElementById('setToken').value.trim(), pw=document.getElementById('setPw').value;
-  if(owner) localStorage.setItem('wph_owner',owner);
-  if(repo) localStorage.setItem('wph_repo',repo);
+  const owner=document.getElementById('setOwner').value.trim(),repo=document.getElementById('setRepo').value.trim();
+  const token=document.getElementById('setToken').value.trim(),pw=document.getElementById('setPw').value;
+  if(owner)localStorage.setItem('wph_owner',owner); if(repo)localStorage.setItem('wph_repo',repo);
   if(!token||!pw){ toast('Укажите токен и пароль','error'); return; }
   TOKEN=token;
   try{
@@ -412,31 +509,23 @@ async function setupAccess(){
     const res=await fetch(ghBase()+'/auth.json',{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Set access',content:b64utf8(JSON.stringify(blob,null,2)),...(sha?{sha}:{})})});
     if(!res.ok){ const e=await res.json().catch(()=>({})); throw new Error(e.message||('HTTP '+res.status)); }
     await ensureManifest();
-    enterAdmin(token); closeSettings(); toast('Доступ настроен. Вы вошли.','success');
-  }catch(e){ TOKEN=sessionStorage.getItem('wph_tok')||null; toast('Ошибка: '+e.message,'error'); }
+    enterAdmin(token,true); closeSettings(); toast('Доступ настроен. Вы вошли.','success');
+  }catch(e){ TOKEN=localStorage.getItem('wph_tok')||null; toast('Ошибка: '+e.message,'error'); }
 }
 
-/* ── manifest (очередь + повтор при 409) ── */
+/* ── manifest write (очередь + повтор 409) ── */
 async function ensureManifest(){
   try{ const r=await fetch(ghBase()+'/photos.json',{headers:ghHeaders()}); if(r.ok)return; }catch{}
   await fetch(ghBase()+'/photos.json',{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Init manifest',content:b64utf8(JSON.stringify({photos:[]},null,2))})});
 }
 let manifestChain=Promise.resolve();
-function writeManifest(list){
-  const snap=JSON.parse(JSON.stringify(list));
-  const run=()=>doWriteManifest(snap);
-  const next=manifestChain.then(run,run);
-  manifestChain=next.catch(()=>{});
-  return next;
-}
+function writeManifest(list){ const snap=JSON.parse(JSON.stringify(list)); const run=()=>doWriteManifest(snap); const next=manifestChain.then(run,run); manifestChain=next.catch(()=>{}); return next; }
 async function doWriteManifest(list){
-  const content=b64utf8(JSON.stringify({photos:list},null,2));
-  let lastErr='unknown';
+  const content=b64utf8(JSON.stringify({photos:list},null,2)); let lastErr='unknown';
   for(let a=0;a<6;a++){
-    let sha=null;
-    try{ const r=await fetch(ghBase()+'/photos.json?t='+Date.now(),{headers:ghHeaders(),cache:'no-store'}); if(r.ok)sha=(await r.json()).sha; }catch{}
+    let sha=null; try{ const r=await fetch(ghBase()+'/photos.json?t='+Date.now(),{headers:ghHeaders(),cache:'no-store'}); if(r.ok)sha=(await r.json()).sha; }catch{}
     const res=await fetch(ghBase()+'/photos.json',{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Update gallery',content,...(sha?{sha}:{})})});
-    if(res.ok) return;
+    if(res.ok)return;
     if(res.status===409||res.status===422){ await new Promise(r=>setTimeout(r,350*(a+1))); lastErr='конфликт версий'; continue; }
     const e=await res.json().catch(()=>({})); throw new Error(e.message||('HTTP '+res.status));
   }
@@ -459,43 +548,43 @@ async function uploadFiles(files){
       const name=Date.now()+'_'+i+'_'+f.name.replace(/[^A-Za-z0-9._-]/g,'_');
       const res=await fetch(ghBase()+'/photos/'+name,{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Add '+name,content:b64})});
       if(!res.ok){ const e=await res.json().catch(()=>({})); throw new Error(e.message||res.status); }
-      localBlobs[name]=url;                       // мгновенный показ без ожидания GitHub
-      added.push({name, w:dim.w, h:dim.h, size:0});
+      localBlobs[name]=url;
+      added.push({name,w:dim.w,h:dim.h,size:'auto'});
     }catch(e){ toast('Ошибка загрузки: '+e.message,'error'); }
   }
   if(added.length){
-    LIST=[...added,...LIST];
-    try{ await writeManifest(LIST); }catch(e){ toast('Фото загружены, но список не обновился: '+e.message,'error'); }
+    LIST=[...LIST,...added];      // новые — в КОНЕЦ
+    try{ await writeManifest(LIST); }catch(e){ toast('Загружено, но список не обновился: '+e.message,'error'); }
     render();
   }
   setProgress(100);
   document.getElementById('fileInput').value='';
   if(added.length) toast(`Добавлено ${added.length} фото`,'success');
 }
-
 async function deletePhoto(name){
   if(!TOKEN){ openLogin(); return; }
   if(!confirm('Удалить эту фотографию?'))return;
   try{
     toast('Удаляем…');
     const meta=await fetch(ghBase()+'/photos/'+encodeURIComponent(name),{headers:ghHeaders()});
-    if(meta.ok){ const sha=(await meta.json()).sha;
-      await fetch(ghBase()+'/photos/'+encodeURIComponent(name),{method:'DELETE',headers:ghHeaders(),body:JSON.stringify({message:'Delete '+name,sha})}); }
+    if(meta.ok){ const sha=(await meta.json()).sha; await fetch(ghBase()+'/photos/'+encodeURIComponent(name),{method:'DELETE',headers:ghHeaders(),body:JSON.stringify({message:'Delete '+name,sha})}); }
     LIST=LIST.filter(p=>p.name!==name);
     if(localBlobs[name]){ URL.revokeObjectURL(localBlobs[name]); delete localBlobs[name]; }
     await writeManifest(LIST); render(); toast('Фото удалено','success');
   }catch(e){ toast('Ошибка удаления: '+e.message,'error'); }
 }
 
-document.getElementById('settingsModal').addEventListener('click',e=>{ if(e.target.id==='settingsModal')closeSettings(); });
-document.getElementById('loginModal').addEventListener('click',e=>{ if(e.target.id==='loginModal')closeLogin(); });
+['settingsModal','loginModal','sizePop'].forEach(id=>{ document.getElementById(id).addEventListener('click',e=>{ if(e.target.id===id){ document.getElementById(id).classList.remove('open'); if(id==='sizePop')popIndex=-1; } }); });
 
 const gw=document.querySelector('.gallery-wrap');
 gw.addEventListener('dragover',e=>{ if(!TOKEN)return; e.preventDefault(); gw.style.outline='2px dashed var(--gold-soft)'; gw.style.outlineOffset='6px'; });
 gw.addEventListener('dragleave',()=>gw.style.outline='');
 gw.addEventListener('drop',e=>{ gw.style.outline=''; if(!TOKEN)return; e.preventDefault(); uploadFiles(e.dataTransfer.files); });
 
+/* init */
+if(!TOKEN) TOKEN=sessionStorage.getItem('wph_tok')||null;
 if(TOKEN){ document.body.classList.add('is-admin'); document.getElementById('loginBtn').style.display='none'; }
+syncCells();
 loadGallery();
 </script>
 </body>
