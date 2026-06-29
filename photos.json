@@ -19,7 +19,7 @@
       "w": 735,
       "h": 1104,
       "size": "2x2",
-      "fit": "cover"
+      "fit": "contain"
     },
     {
       "name": "1782722723129_4_IMG_2081.jpeg",
