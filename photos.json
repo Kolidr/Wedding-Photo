@@ -331,7 +331,7 @@
       "w": 736,
       "h": 981,
       "size": "auto",
-      "fit": "contain"
+      "fit": "cover"
     },
     {
       "name": "1782747031225_1_IMG_2116.jpeg",
