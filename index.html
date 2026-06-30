@@ -59,35 +59,48 @@
   body.is-admin .admin-only{display:inline-flex}
 
   .gallery-wrap{padding:18px 20px 8px}
-  .gallery{display:grid;grid-template-columns:repeat(var(--cols,6),1fr);grid-auto-rows:var(--rowh,200px);gap:10px;grid-auto-flow:dense;max-width:1400px;margin:0 auto}
+  .gallery{display:grid;grid-template-columns:repeat(var(--cols,6),1fr);grid-auto-rows:var(--rowh,200px);gap:10px;max-width:1400px;margin:0 auto}
 
   .g-item{grid-column:span var(--c,1);grid-row:span var(--r,1);
     position:relative;overflow:hidden;border-radius:3px;background:var(--surface);border:1px solid var(--line);
     cursor:pointer;box-shadow:0 1px 2px rgba(42,32,29,.05);transition:box-shadow .25s,transform .25s}
   .g-item:hover{box-shadow:0 12px 26px rgba(93,25,34,.16);transform:translateY(-2px)}
+  .g-item.selected{outline:3px solid var(--gold-soft);outline-offset:-3px;box-shadow:0 12px 30px rgba(122,35,48,.28)}
   .g-item img{position:absolute;inset:0;width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
   .g-item.cover img{object-fit:cover}
   .g-item.contain img{object-fit:contain;background:var(--paper)}
   @media (hover:hover){ .g-item.cover:hover img{transform:scale(1.05)} }
 
-  /* tools */
   .g-tools{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .2s;z-index:3}
-  .g-tools::before{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(42,18,22,.66) 0%, transparent 38%, transparent 72%, rgba(42,18,22,.42) 100%)}
+  .g-tools::before{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(42,18,22,.5) 0%, transparent 34%, transparent 74%, rgba(42,18,22,.4) 100%)}
   @media (hover:hover){ body.is-admin .g-item:hover .g-tools{opacity:1;pointer-events:auto} }
-  body.is-admin .g-item.active .g-tools{opacity:1;pointer-events:auto}
+  body.is-admin .g-item.selected .g-tools{opacity:1;pointer-events:auto}
   .tbtn{position:absolute;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.55);background:rgba(42,18,22,.62);backdrop-filter:blur(2px);color:#fff;cursor:pointer;border-radius:7px;transition:background .15s;z-index:4}
-  .tbtn:hover{background:rgba(42,18,22,.9)} .tbtn:disabled{opacity:.32;cursor:default}
-  .t-prev{left:8px;top:50%;transform:translateY(-50%);width:34px;height:44px;font-size:18px}
-  .t-next{right:8px;top:50%;transform:translateY(-50%);width:34px;height:44px;font-size:18px}
-  .tg-tr{position:absolute;right:8px;top:8px;display:flex;gap:6px;z-index:4}
-  .tg-tr .tbtn{position:static;transform:none;width:34px;height:30px}
-  .t-open{left:8px;bottom:8px;height:32px;padding:0 12px;gap:6px;font-size:11px;letter-spacing:.05em;text-transform:uppercase;background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.6)}
-  .t-open:hover{background:rgba(255,255,255,.34)}
+  .tbtn:hover{background:rgba(42,18,22,.9)} .tbtn:disabled{opacity:.3;cursor:default}
+  .t-prev{left:8px;top:50%;transform:translateY(-50%);width:34px;height:46px;font-size:18px}
+  .t-next{right:8px;top:50%;transform:translateY(-50%);width:34px;height:46px;font-size:18px}
+  .t-open{right:8px;top:8px;width:32px;height:32px}
   .g-badge{position:absolute;left:8px;top:8px;display:none;font-size:11px;color:#fff;background:rgba(42,18,22,.62);border:1px solid rgba(255,255,255,.45);border-radius:20px;padding:2px 9px;z-index:4;pointer-events:none}
-  body.is-admin .g-item:hover .g-badge,body.is-admin .g-item.active .g-badge{display:inline-block}
-  .g-cmt{position:absolute;right:7px;bottom:7px;display:none;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:rgba(122,35,48,.82);border:1px solid rgba(255,255,255,.6);color:#fff;z-index:5;pointer-events:none}
+  body.is-admin .g-item:hover .g-badge,body.is-admin .g-item.selected .g-badge{display:inline-block}
+  .g-cmt{position:absolute;right:7px;bottom:7px;display:none;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:rgba(122,35,48,.85);border:1px solid rgba(255,255,255,.6);color:#fff;z-index:5;pointer-events:none}
   .g-item.has-cmt .g-cmt{display:flex}
-  @media (max-width:640px){ .deskonly{display:none!important} .t-open-txt{display:none} .t-open{padding:0;width:34px;left:50%;transform:translateX(-50%)} .t-prev,.t-next{width:30px;height:40px} }
+  @media (max-width:640px){ .t-prev,.t-next{width:30px;height:42px} }
+
+  /* ── floating tool bar ── */
+  .floatbar{position:fixed;left:50%;bottom:calc(var(--safe-bot) + 16px);transform:translateX(-50%) translateY(150%);
+    z-index:140;display:flex;align-items:center;gap:5px;background:rgba(42,18,22,.94);backdrop-filter:blur(10px);
+    border:1px solid rgba(201,168,95,.45);border-radius:20px;padding:8px;box-shadow:0 18px 44px rgba(0,0,0,.34);
+    transition:transform .3s cubic-bezier(.2,.7,.3,1);max-width:calc(100vw - 20px)}
+  .floatbar.show{transform:translateX(-50%) translateY(0)}
+  .fb-pos{color:var(--gold-soft);font-size:12px;padding:0 8px 0 6px;white-space:nowrap;font-family:var(--ff-display);font-style:italic}
+  .fb-pos b{font-style:normal;font-family:var(--ff-body)}
+  .floatbar button{min-width:50px;height:46px;border:none;background:rgba(255,255,255,.1);color:#fff;border-radius:13px;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:9px;letter-spacing:.02em;padding:0 7px;transition:background .15s}
+  .floatbar button:hover{background:rgba(255,255,255,.26)}
+  .floatbar button.dng:hover{background:rgba(155,53,53,.62)}
+  .floatbar .fb-x{min-width:40px;background:transparent;font-size:17px}
+  .floatbar .fb-x:hover{background:rgba(255,255,255,.14)}
+  .floatbar svg{display:block}
 
   .empty{display:none;text-align:center;padding:64px 24px}
   .empty svg{opacity:.25;margin-bottom:16px;color:var(--burgundy)}
@@ -95,46 +108,50 @@
   .empty p{font-size:13px;color:var(--muted);opacity:.8;margin-top:6px}
 
   /* ── LIGHTBOX ── */
-  .lb{position:fixed;inset:0;background:rgba(24,14,16,.96);z-index:1000;display:none;flex-direction:column;padding:calc(var(--safe-top) + 8px) 0 calc(var(--safe-bot) + 8px);animation:fade .2s ease}
+  .lb{position:fixed;inset:0;background:rgba(22,12,14,.97);z-index:1000;display:none;flex-direction:column;padding:calc(var(--safe-top) + 6px) 0 calc(var(--safe-bot) + 8px);animation:fade .2s ease}
   .lb.open{display:flex}
   @keyframes fade{from{opacity:0}to{opacity:1}}
   .lb-top{flex:0 0 auto;height:40px;display:flex;align-items:center;justify-content:center;position:relative}
   .lb-pos{color:rgba(255,255,255,.72);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
   .lb-x{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px}
   .lb-x:hover{background:rgba(255,255,255,.25)}
-  .lb-stage{flex:1 1 auto;position:relative;display:flex;align-items:center;justify-content:center;min-height:0;padding:0 8px}
-  .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 20px 50px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.08)}
+  .lb-stage{flex:1 1 auto;position:relative;display:flex;align-items:center;justify-content:center;min-height:0;overflow:hidden;padding:0 8px;touch-action:none}
+  .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 20px 50px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.08);transform-origin:center center;will-change:transform;user-select:none;-webkit-user-select:none}
   .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;z-index:6}
   .lb-nav:hover{background:rgba(255,255,255,.25)}
   .lb-prev{left:12px}.lb-next{right:12px}
+  .lb-hint{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);color:rgba(255,255,255,.4);font-size:10.5px;letter-spacing:.05em;pointer-events:none;white-space:nowrap}
 
   .lb-comments{flex:0 0 auto;max-height:30vh;overflow:auto;margin:8px auto 0;width:100%;max-width:720px;padding:0 14px}
-  .lb-cm-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
-  .cm{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 11px}
+  .cm-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+  .cm{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 11px;position:relative}
   .cm .cm-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:3px}
   .cm .cm-u{font-family:var(--ff-display);font-style:italic;font-size:14px;color:var(--gold-soft)}
-  .cm .cm-d{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.04em}
-  .cm .cm-t{font-size:13px;color:rgba(255,255,255,.86);line-height:1.45;white-space:pre-wrap;word-break:break-word}
-  .cm.local .cm-u::after{content:' · только у вас';font-style:normal;font-size:9px;color:rgba(255,255,255,.4);letter-spacing:.04em}
-  .cm-empty{font-size:12.5px;color:rgba(255,255,255,.4);text-align:center;padding:6px 0 10px}
+  .cm .cm-d{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.04em;white-space:nowrap}
+  .cm .cm-t{font-size:13px;color:rgba(255,255,255,.86);line-height:1.45;white-space:pre-wrap;word-break:break-word;padding-right:22px}
+  .cm-tag{display:inline-block;font-size:9px;font-style:normal;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:1px 6px;margin-left:6px;vertical-align:middle;letter-spacing:.02em}
+  .cm-del{position:absolute;right:7px;bottom:7px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .cm-del:hover{background:rgba(155,53,53,.55);color:#fff}
+  .cm-empty{font-size:12.5px;color:rgba(255,255,255,.42);text-align:center;padding:6px 0 10px}
   .cm-form{display:flex;flex-direction:column;gap:7px}
   .cm-form .row{display:flex;gap:7px}
   .cm-form input,.cm-form textarea{font-family:var(--ff-body);font-size:16px;font-weight:300;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:7px;padding:9px 11px;outline:none;width:100%}
   .cm-form input::placeholder,.cm-form textarea::placeholder{color:rgba(255,255,255,.45)}
   .cm-form textarea{resize:none;min-height:38px}
-  .cm-name{max-width:200px}
+  .cm-name{max-width:190px}
   .cm-send{flex:0 0 auto;border:none;background:var(--burgundy);color:#fff;border-radius:7px;padding:0 16px;height:38px;cursor:pointer;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
   .cm-send:hover{background:var(--burgundy-d)}
-  .cm-rename{align-self:flex-start;background:none;border:none;color:rgba(255,255,255,.5);font-size:11px;cursor:pointer;text-decoration:underline;padding:0}
+  .cm-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+  .cm-rename{background:none;border:none;color:rgba(255,255,255,.5);font-size:11px;cursor:pointer;text-decoration:underline;padding:0}
+  .cm-hint{font-size:10.5px;color:rgba(255,255,255,.4);font-style:italic}
 
   .lb-bar{flex:0 0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:10px 12px 0}
-  .lb-grp{display:flex;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:11px;padding:6px}
+  .lb-grp{display:flex;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:6px}
   .lb-grp.admin-only2{display:none}
   body.is-admin .lb-grp.admin-only2{display:flex}
-  .lb-grp button{min-width:46px;height:42px;padding:0 13px;border:none;background:rgba(255,255,255,.1);color:#fff;border-radius:8px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .15s}
+  .lb-grp button{min-width:48px;height:44px;padding:0 16px;border:none;background:rgba(255,255,255,.1);color:#fff;border-radius:9px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
   .lb-grp button:hover{background:rgba(255,255,255,.28)}
   .lb-grp button.dng:hover{background:rgba(155,53,53,.65)}
-  .lb-grp button:disabled{opacity:.32;cursor:default}
 
   /* ── MODALS ── */
   .backdrop{position:fixed;inset:0;background:rgba(42,18,22,.45);backdrop-filter:blur(3px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
@@ -185,7 +202,6 @@
     .toolbar{padding:9px 12px}
     .gallery-wrap{padding:12px}
     .modal{padding:22px 18px}
-    .lb-stage img{max-height:100%}
   }
 </style>
 </head>
@@ -202,9 +218,8 @@
 
 <div class="toolbar">
   <div class="tb-left">
-    <span>Фото</span>
-    <span class="count" id="count">0</span>
-    <span class="hint-inline">· нажмите фото, чтобы выбрать; ещё раз — открыть</span>
+    <span>Фото</span><span class="count" id="count">0</span>
+    <span class="hint-inline">· нажмите фото — появятся инструменты</span>
   </div>
   <div class="tb-right">
     <label class="btn btn-primary admin-only" style="cursor:pointer">
@@ -244,38 +259,52 @@
   <div class="fs">5 сентября 2026 · Иркутск</div>
 </footer>
 
+<!-- floating tools (admin, on select) -->
+<div class="floatbar" id="floatbar">
+  <button class="fb-x" onclick="deselect()" title="Закрыть">✕</button>
+  <span class="fb-pos"><b id="fbPos">—</b></span>
+  <button onclick="fbMove('start')" title="В начало">
+    <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+    В начало
+  </button>
+  <button onclick="fbSize()" title="Формат / размер">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    Размер
+  </button>
+  <button onclick="fbFit()" id="fbFitBtn" title="Обрезать / целиком">▢<span style="margin-top:1px">Вид</span></button>
+  <button class="dng" onclick="fbDelete()" title="Удалить">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg>
+    Удалить
+  </button>
+  <button onclick="fbMove('end')" title="В конец">
+    <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+    В конец
+  </button>
+</div>
+
 <div class="lb" id="lb">
   <div class="lb-top">
     <span class="lb-pos" id="lbPos"></span>
     <button class="lb-x" onclick="closeLb()">✕</button>
   </div>
-  <div class="lb-stage">
+  <div class="lb-stage" id="lbStage">
     <button class="lb-nav lb-prev" onclick="lbNav(-1)">&#8249;</button>
-    <img id="lbImg" src="" alt=""/>
+    <img id="lbImg" src="" alt="" draggable="false"/>
     <button class="lb-nav lb-next" onclick="lbNav(1)">&#8250;</button>
+    <div class="lb-hint" id="lbHint">Двойное касание или щипок — увеличить</div>
   </div>
   <div class="lb-comments" id="lbComments"></div>
   <div class="lb-bar">
-    <div class="lb-grp admin-only2">
-      <button onclick="lbMove('start')" title="В начало" id="lbStart">&#8676;</button>
-      <button onclick="lbMove(-1)" title="Левее (ближе к началу)" id="lbLeft">&#8249;</button>
-      <button onclick="lbMove(1)" title="Правее (дальше от начала)" id="lbRight">&#8250;</button>
-      <button onclick="lbMove('end')" title="В конец" id="lbEnd">&#8677;</button>
-    </div>
-    <div class="lb-grp admin-only2">
-      <button onclick="openSizePop(lbIndex)" title="Формат / размер">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-        Размер
-      </button>
-      <button onclick="lbToggleFit()" id="lbFitBtn" title="Обрезать / показать целиком">▢</button>
-      <button onclick="lbDelete()" class="dng" title="Удалить (нужен пароль)">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg>
-      </button>
-    </div>
     <div class="lb-grp">
-      <button onclick="downloadOne(LIST[lbIndex].name)" title="Скачать фото">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-        Скачать
+      <button onclick="savePhoto(LIST[lbIndex].name)" title="Сохранить в галерею / скачать">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Сохранить
+      </button>
+    </div>
+    <div class="lb-grp admin-only2">
+      <button class="dng" onclick="lbDelete()" title="Удалить (нужен пароль)">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg>
+        Удалить
       </button>
     </div>
   </div>
@@ -351,8 +380,6 @@ const SHAPE_LABEL={auto:'Авто','1x1':'1×1','2x1':'2×1','1x2':'1×2','2x2':
 const localBlobs={};
 
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-
-/* ── footprint ── */
 function computeAuto(w,h){
   if(!w||!h) return [1,1];
   const ratio=w/h; let best=[1,1],err=1e9;
@@ -360,9 +387,8 @@ function computeAuto(w,h){
   return best;
 }
 function tileCR(p){ if(!p.size||p.size==='auto') return computeAuto(p.w,p.h); return PRESETS[p.size]||[1,1]; }
-function fitOf(p){ return p.fit || 'cover'; }   /* по умолчанию — заполнение с обрезкой */
+function fitOf(p){ return p.fit || 'cover'; }
 
-/* ── repo / sources ── */
 function repoInfo(){
   const o=localStorage.getItem('wph_owner'),r=localStorage.getItem('wph_repo');
   if(o&&r) return {owner:o,repo:r};
@@ -374,7 +400,6 @@ function rawUrl(name){ const {owner,repo}=repoInfo(); return (owner&&repo)?`http
 function relUrl(name){ return './photos/'+encodeURIComponent(name); }
 function primarySrc(name){ return localBlobs[name]||rawUrl(name); }
 function niceName(name){ return name.replace(/^\d+_\d+_/,'')||name; }
-
 function ghBase(){ const {owner,repo}=repoInfo(); return `https://api.github.com/repos/${owner}/${repo}/contents`; }
 function ghHeaders(){ return {'Authorization':'token '+TOKEN,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'}; }
 function b64utf8(s){ return btoa(unescape(encodeURIComponent(s))); }
@@ -385,14 +410,12 @@ let toastT;
 function toast(m,t=''){const el=document.getElementById('toast');el.textContent=m;el.className='toast show '+t;clearTimeout(toastT);toastT=setTimeout(()=>el.className='toast',3400);}
 function setProgress(p){const e=document.getElementById('progress');e.style.width=p+'%';if(p>=100)setTimeout(()=>e.style.width='0',600);}
 
-/* ── crypto ── */
 function u8(b){return Uint8Array.from(atob(b),c=>c.charCodeAt(0));}
 function b64b(a){let s='';a.forEach(b=>s+=String.fromCharCode(b));return btoa(s);}
 async function deriveKey(pw,salt){const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:120000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
 async function encryptToken(t,pw){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));const k=await deriveKey(pw,salt);const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,new TextEncoder().encode(t));return {v:1,salt:b64b(salt),iv:b64b(iv),ct:b64b(new Uint8Array(ct))};}
 async function decryptToken(blob,pw){const k=await deriveKey(pw,u8(blob.salt));const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u8(blob.iv)},k,u8(blob.ct));return new TextDecoder().decode(pt);}
 
-/* ── ячейка = ширине колонки; на десктопе ограничим так, чтобы 3×3 влезал по высоте ── */
 function colsForWidth(){ return window.innerWidth<640?3:6; }
 function syncCells(){
   const g=document.getElementById('gallery'); if(!g)return;
@@ -403,8 +426,8 @@ function syncCells(){
   if(window.innerWidth>=640){
     const head=(document.querySelector('header')?.offsetHeight)||0;
     const tb=(document.querySelector('.toolbar')?.offsetHeight)||0;
-    const avail=window.innerHeight-head-tb-44;          // запас на отступы
-    const maxRow=(avail-2*gap)/3;                        // три ряда (3×3) помещаются
+    const avail=window.innerHeight-head-tb-44;
+    const maxRow=(avail-2*gap)/3;
     if(maxRow>50) rowH=Math.min(colW,maxRow);
   }
   g.style.setProperty('--cols',cols);
@@ -424,13 +447,22 @@ async function addComment(name,text){
   if(TOKEN){
     const it=LIST.find(p=>p.name===name); if(it){ if(!Array.isArray(it.comments))it.comments=[]; it.comments.push(entry); }
     try{ await writeManifest(LIST); }
-    catch(e){ const lc=localComments(); (lc[name]=lc[name]||[]).push(entry); saveLocalComments(lc); toast('Сохранили у вас (нет связи)'); }
+    catch(e){ const lc=localComments(); (lc[name]=lc[name]||[]).push(entry); saveLocalComments(lc); toast('Сохранили на устройстве (нет связи)'); }
   } else {
     const lc=localComments(); (lc[name]=lc[name]||[]).push(entry); saveLocalComments(lc);
   }
 }
+async function deleteComment(name,ts,isLocal){
+  if(isLocal){
+    const lc=localComments(); lc[name]=(lc[name]||[]).filter(c=>c.ts!==ts); if(!lc[name].length)delete lc[name]; saveLocalComments(lc);
+  } else {
+    if(!TOKEN){ toast('Этот комментарий можно удалить только в режиме редактирования'); return; }
+    const it=LIST.find(p=>p.name===name); if(it&&Array.isArray(it.comments)) it.comments=it.comments.filter(c=>c.ts!==ts);
+    try{ await writeManifest(LIST); }catch(e){ toast('Не удалось удалить: '+e.message,'error'); return; }
+  }
+  render(); showLb();
+}
 
-/* ── манифест ── */
 async function fetchManifest(){
   const {owner,repo}=repoInfo(); const urls=[];
   if(owner&&repo) urls.push(`https://raw.githubusercontent.com/${owner}/${repo}/main/photos.json?t=`+Date.now());
@@ -455,7 +487,6 @@ async function loadGallery(){
   render();
 }
 
-/* ── рендер ── */
 function shapeBoxHTML(sz){
   if(sz==='auto') return '<div class="box" style="font-size:11px;color:var(--burgundy)">A</div>';
   const [c,r]=PRESETS[sz]||[1,1]; const u=8;
@@ -464,7 +495,8 @@ function shapeBoxHTML(sz){
 function render(){
   const g=document.getElementById('gallery'), empty=document.getElementById('empty');
   document.getElementById('count').textContent=LIST.length;
-  if(!LIST.length){ g.innerHTML=''; empty.style.display='block'; syncCells(); return; }
+  if(activeName && !LIST.some(p=>p.name===activeName)) activeName=null;
+  if(!LIST.length){ g.innerHTML=''; empty.style.display='block'; updateFloatbar(); syncCells(); return; }
   empty.style.display='none';
 
   g.innerHTML=LIST.map((p,i)=>{
@@ -474,22 +506,16 @@ function render(){
       <span class="g-badge">${i+1} / ${LIST.length}</span>
       <span class="g-cmt" title="Есть комментарий"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-8.5 8.5 8.5 8.5 0 01-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 014 11.5 8.5 8.5 0 0121 11.5z"/></svg></span>
       <div class="g-tools">
-        <span class="g-badge" style="display:none"></span>
         <button class="tbtn t-prev" data-act="prev" title="Левее" ${i===0?'disabled':''}>&#8249;</button>
         <button class="tbtn t-next" data-act="next" title="Правее" ${i===LIST.length-1?'disabled':''}>&#8250;</button>
-        <div class="tg-tr deskonly">
-          <button class="tbtn" data-act="size" title="Формат / размер"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
-          <button class="tbtn" data-act="fit" title="Обрезать / целиком">${fit==='contain'?'▣':'▢'}</button>
-          <button class="tbtn" data-act="del" title="Удалить"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg></button>
-        </div>
-        <button class="tbtn t-open" data-act="open"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg><span class="t-open-txt">Открыть</span></button>
+        <button class="tbtn t-open" data-act="open" title="Открыть во весь экран"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
       </div>
     </div>`;
   }).join('');
 
   g.querySelectorAll('.g-item').forEach(el=>{
     const i=+el.dataset.i, p=LIST[i]; if(!p)return;
-    if(activeName && p.name===activeName) el.classList.add('active');
+    if(activeName && p.name===activeName) el.classList.add('selected');
     const img=el.querySelector('img');
     img.dataset.fb='0';
     img.onerror=()=>{ if(img.dataset.fb==='1')return; img.dataset.fb='1'; img.src=relUrl(p.name); };
@@ -500,23 +526,20 @@ function render(){
       if(act){ ev.stopPropagation();
         if(act==='prev') moveBy(i,-1);
         else if(act==='next') moveBy(i,1);
-        else if(act==='size') openSizePop(i);
-        else if(act==='fit') toggleFit(i);
-        else if(act==='del') deletePhoto(p.name);
         else if(act==='open') openLb(i);
         return;
       }
       const admin=document.body.classList.contains('is-admin');
-      if(!admin){ openLb(i); return; }                 // гость: открываем сразу
+      if(!admin){ openLb(i); return; }
       if(isTouch){
-        if(el.classList.contains('active')){ openLb(i); }      // второе нажатие — открыть
-        else { selectTile(el,p.name); }                        // первое — выбрать + инструменты
-      } else { openLb(i); }                              // компьютер: клик открывает
+        if(el.classList.contains('selected')) openLb(i);
+        else selectPhoto(p.name);
+      } else { selectPhoto(p.name); }
     });
   });
+  updateFloatbar();
   syncCells();
 }
-function selectTile(el,name){ document.querySelectorAll('.g-item.active').forEach(x=>x.classList.remove('active')); el.classList.add('active'); activeName=name; }
 function onImgLoad(i,img){
   const p=LIST[i]; if(!p)return;
   if(!p.w||!p.h){ p.w=img.naturalWidth||1; p.h=img.naturalHeight||1;
@@ -524,13 +547,46 @@ function onImgLoad(i,img){
   }
 }
 
-/* ── порядок (с сохранением активного фото) ── */
+/* ── выбор + плавающая панель ── */
+function selectedIndex(){ return activeName?LIST.findIndex(p=>p.name===activeName):-1; }
+function selectPhoto(name){
+  activeName=name;
+  document.querySelectorAll('.g-item.selected').forEach(x=>x.classList.remove('selected'));
+  const el=document.querySelector(`.g-item[data-name="${CSS.escape(name)}"]`); if(el)el.classList.add('selected');
+  updateFloatbar();
+}
+function deselect(){ activeName=null; document.querySelectorAll('.g-item.selected').forEach(x=>x.classList.remove('selected')); updateFloatbar(); }
+function updateFloatbar(){
+  const fb=document.getElementById('floatbar'); const idx=selectedIndex();
+  const admin=document.body.classList.contains('is-admin');
+  if(admin && idx>=0){
+    document.getElementById('fbPos').textContent=(idx+1)+' / '+LIST.length;
+    const p=LIST[idx]; document.getElementById('fbFitBtn').firstChild.textContent=(fitOf(p)==='contain')?'▣':'▢';
+    fb.classList.add('show');
+  } else fb.classList.remove('show');
+}
+function fbSize(){ const i=selectedIndex(); if(i>=0)openSizePop(i); }
+function fbFit(){ const i=selectedIndex(); if(i>=0)toggleFit(i); }
+function fbDelete(){ const i=selectedIndex(); if(i>=0)deletePhoto(LIST[i].name); }
+function fbMove(where){ const i=selectedIndex(); if(i<0)return; moveTo(i,where); }
+
+/* ── порядок (без авто-заполнения — позиция всегда меняется) ── */
 function moveBy(i,d){
   if(!TOKEN){ openLogin(); return; }
   const j=i+d; if(j<0||j>=LIST.length)return;
   const it=LIST[i]; activeName=it.name;
   LIST.splice(i,1); LIST.splice(j,0,it);
   if(document.getElementById('lb').classList.contains('open')) lbIndex=j;
+  render(); if(document.getElementById('lb').classList.contains('open')) showLb();
+  scheduleSave();
+}
+function moveTo(i,where){
+  if(!TOKEN){ openLogin(); return; }
+  let to = where==='start'?0 : where==='end'?LIST.length-1 : i;
+  if(to===i)return;
+  const it=LIST[i]; activeName=it.name;
+  LIST.splice(i,1); LIST.splice(to,0,it);
+  if(document.getElementById('lb').classList.contains('open')) lbIndex=to;
   render(); if(document.getElementById('lb').classList.contains('open')) showLb();
   scheduleSave();
 }
@@ -555,33 +611,76 @@ function closeSizePop(){ document.getElementById('sizePop').classList.remove('op
 let saveT;
 function scheduleSave(){ clearTimeout(saveT); saveT=setTimeout(async()=>{ try{ await writeManifest(LIST); toast('Сохранено','success'); }catch(e){ toast('Не удалось сохранить: '+e.message,'error'); } },1200); }
 
-/* ── lightbox ── */
+/* ── lightbox + зум ── */
+let zScale=1,zTx=0,zTy=0,pointers=new Map(),startDist=0,startScale=1,lastMid=null,panStart=null,lastTouchTap=0;
+function applyZoom(){ const img=document.getElementById('lbImg'); img.style.transform=`translate(${zTx}px,${zTy}px) scale(${zScale})`; img.style.cursor=zScale>1?'grab':'default'; const h=document.getElementById('lbHint'); if(h)h.style.opacity=zScale>1?'0':''; }
+function resetZoom(){ zScale=1;zTx=0;zTy=0; applyZoom(); }
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);} function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+function toggleZoomAt(cx,cy){ const img=document.getElementById('lbImg'); const rect=img.getBoundingClientRect();
+  if(zScale>1.05){ resetZoom(); } else { const ns=2.5; const ox=cx-(rect.left+rect.width/2); const oy=cy-(rect.top+rect.height/2); zTx=-ox*(ns-1); zTy=-oy*(ns-1); zScale=ns; applyZoom(); } }
+function setupZoom(){
+  const stage=document.getElementById('lbStage'), img=document.getElementById('lbImg');
+  stage.addEventListener('pointerdown',e=>{
+    if(e.target.closest('.lb-nav'))return;
+    stage.setPointerCapture&&stage.setPointerCapture(e.pointerId);
+    pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(pointers.size===1){ panStart={x:e.clientX-zTx,y:e.clientY-zTy}; }
+    else if(pointers.size===2){ const p=[...pointers.values()]; startDist=dist(p[0],p[1])||1; startScale=zScale; lastMid=mid(p[0],p[1]); }
+  });
+  stage.addEventListener('pointermove',e=>{
+    if(!pointers.has(e.pointerId))return; pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    const p=[...pointers.values()];
+    if(pointers.size===2){ const d=dist(p[0],p[1]); zScale=clamp(startScale*(d/startDist),1,5); const m=mid(p[0],p[1]); if(lastMid){ zTx+=m.x-lastMid.x; zTy+=m.y-lastMid.y; } lastMid=m; if(zScale<=1){zTx=0;zTy=0;} applyZoom(); e.preventDefault(); }
+    else if(pointers.size===1 && zScale>1 && panStart){ zTx=e.clientX-panStart.x; zTy=e.clientY-panStart.y; applyZoom(); e.preventDefault(); }
+  });
+  const up=e=>{
+    const wasTouch=e.pointerType==='touch'; pointers.delete(e.pointerId);
+    if(pointers.size<2)lastMid=null;
+    if(pointers.size===1){ const q=[...pointers.values()][0]; panStart={x:q.x-zTx,y:q.y-zTy}; }
+    if(pointers.size===0){
+      if(zScale<1.05)resetZoom();
+      if(wasTouch){ const now=Date.now(); if(now-lastTouchTap<300){ toggleZoomAt(e.clientX,e.clientY); lastTouchTap=0; } else lastTouchTap=now; }
+    }
+  };
+  stage.addEventListener('pointerup',up); stage.addEventListener('pointercancel',up);
+  stage.addEventListener('wheel',e=>{ e.preventDefault(); const f=e.deltaY<0?1.15:1/1.15; const ns=clamp(zScale*f,1,5);
+    const img=document.getElementById('lbImg'); const rect=img.getBoundingClientRect(); const cx=e.clientX-(rect.left+rect.width/2), cy=e.clientY-(rect.top+rect.height/2);
+    zTx=(zTx-cx)*(ns/zScale)+cx; zTy=(zTy-cy)*(ns/zScale)+cy; zScale=ns; if(zScale<=1){zTx=0;zTy=0;} applyZoom(); },{passive:false});
+  stage.addEventListener('dblclick',e=>{ if(e.target.closest('.lb-nav'))return; toggleZoomAt(e.clientX,e.clientY); });
+}
+
 function openLb(i){ lbIndex=i; showLb(); document.getElementById('lb').classList.add('open'); document.body.style.overflow='hidden'; }
 function showLb(){
   const p=LIST[lbIndex]; if(!p)return;
+  resetZoom();
   const img=document.getElementById('lbImg');
   img.onerror=()=>{img.onerror=null;img.src=relUrl(p.name);}; img.src=primarySrc(p.name);
   document.getElementById('lbPos').textContent=(lbIndex+1)+' / '+LIST.length;
-  document.getElementById('lbFitBtn').textContent=(fitOf(p)==='contain')?'▣':'▢';
-  document.getElementById('lbStart').disabled=document.getElementById('lbLeft').disabled=(lbIndex===0);
-  document.getElementById('lbEnd').disabled=document.getElementById('lbRight').disabled=(lbIndex===LIST.length-1);
   renderLbComments(p.name);
 }
 function renderLbComments(name){
-  const {repo,loc}=getComments(name);
+  const {repo,loc}=getComments(name); const admin=!!TOKEN; const me=userName();
   const all=repo.map(c=>({...c,local:false})).concat(loc.map(c=>({...c,local:true}))).sort((a,b)=>(a.ts||0)-(b.ts||0));
   const list = all.length
-    ? all.map(c=>`<div class="cm${c.local?' local':''}"><div class="cm-h"><span class="cm-u">${esc(c.u||'Гость')}</span><span class="cm-d">${fmtDate(c.ts)}</span></div><div class="cm-t">${esc(c.t||'')}</div></div>`).join('')
+    ? all.map(c=>{
+        const canDel = c.local || admin;
+        const del = canDel?`<button class="cm-del" title="Удалить комментарий" onclick="deleteComment('${esc(name).replace(/'/g,"\\'")}',${c.ts||0},${c.local})">✕</button>`:'';
+        const tag = c.local?`<span class="cm-tag">только на этом устройстве</span>`:'';
+        return `<div class="cm"><div class="cm-h"><span class="cm-u">${esc(c.u||'Гость')}${tag}</span><span class="cm-d">${fmtDate(c.ts)}</span></div><div class="cm-t">${esc(c.t||'')}</div>${del}</div>`;
+      }).join('')
     : `<div class="cm-empty">Пока нет комментариев. Будьте первым!</div>`;
-  const haveName=!!userName();
+  const haveName=!!me;
   const nameField = haveName ? '' : `<input class="cm-name" id="cmName" placeholder="Ваше имя" maxlength="40"/>`;
-  const rename = haveName ? `<button class="cm-rename" onclick="changeName()">Вы: ${esc(userName())} · сменить имя</button>` : '';
+  const foot = haveName
+      ? `<div class="cm-foot"><button class="cm-rename" onclick="changeName()">Вы: ${esc(me)} · сменить имя</button>${admin?'':'<span class="cm-hint">виден только вам — войдите, чтобы увидели все</span>'}</div>`
+      : (admin?'':`<div class="cm-foot"><span class="cm-hint">виден только вам — войдите по паролю, чтобы увидели все</span></div>`);
   document.getElementById('lbComments').innerHTML=
-    `<div class="cm-list" id="cmList">${list}</div>
+    `<div class="cm-list">${list}</div>
      <div class="cm-form">
        <div class="row">${nameField}<textarea id="cmText" placeholder="Добавить комментарий…" rows="1"></textarea>
        <button class="cm-send" onclick="submitComment()">Отпр.</button></div>
-       ${rename}
+       ${foot}
      </div>`;
 }
 function fmtDate(ts){ if(!ts)return''; const d=new Date(ts); return d.toLocaleDateString('ru-RU',{day:'numeric',month:'short'})+' '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}); }
@@ -593,22 +692,10 @@ async function submitComment(){
   const txtEl=document.getElementById('cmText'); const txt=(txtEl.value||'').trim();
   if(!txt){ toast('Введите комментарий','error'); txtEl.focus(); return; }
   await addComment(p.name,txt);
-  render();                       // обновить значок на плитке
-  showLb();                       // обновить список
-  toast('Комментарий добавлен','success');
+  render(); showLb(); toast('Комментарий добавлен','success');
 }
-function closeLb(){ document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
+function closeLb(){ document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; resetZoom(); }
 function lbNav(d){ lbIndex=(lbIndex+d+LIST.length)%LIST.length; showLb(); }
-function lbMove(dir){
-  if(!TOKEN){ openLogin(); return; }
-  const cur=lbIndex; let to;
-  if(dir==='start') to=0; else if(dir==='end') to=LIST.length-1; else to=cur+dir;
-  if(to<0||to>=LIST.length||to===cur) return;
-  const it=LIST[cur]; activeName=it.name;
-  LIST.splice(cur,1); LIST.splice(to,0,it);
-  lbIndex=to; render(); showLb(); scheduleSave();
-}
-function lbToggleFit(){ if(!TOKEN){openLogin();return;} const p=LIST[lbIndex]; p.fit=(fitOf(p)==='cover')?'contain':'cover'; render(); showLb(); scheduleSave(); }
 async function lbDelete(){
   if(!TOKEN){ openLogin(); return; }
   const name=LIST[lbIndex]?.name; if(!name)return;
@@ -618,37 +705,42 @@ async function lbDelete(){
 }
 document.addEventListener('keydown',e=>{ if(!document.getElementById('lb').classList.contains('open'))return; const t=e.target.tagName; if(t==='INPUT'||t==='TEXTAREA')return; if(e.key==='Escape')closeLb(); if(e.key==='ArrowLeft')lbNav(-1); if(e.key==='ArrowRight')lbNav(1); });
 
-/* ── скачивание ── */
+/* ── сохранение / скачивание ── */
 async function fetchBlob(name){
   if(localBlobs[name]) return await (await fetch(localBlobs[name])).blob();
   try{ const r=await fetch(relUrl(name)); if(r.ok) return await r.blob(); }catch{}
   const r2=await fetch(primarySrc(name)); return await r2.blob();
 }
 async function downloadOne(name){
-  try{
-    const blob=await fetchBlob(name); const url=URL.createObjectURL(blob);
+  try{ const blob=await fetchBlob(name); const url=URL.createObjectURL(blob);
     const a=document.createElement('a'); a.href=url; a.download=niceName(name); document.body.appendChild(a); a.click(); a.remove();
     setTimeout(()=>URL.revokeObjectURL(url),5000);
   }catch(e){ toast('Не удалось скачать: '+e.message,'error'); }
+}
+async function savePhoto(name){
+  try{
+    const blob=await fetchBlob(name);
+    const file=new File([blob], niceName(name), {type:blob.type||'image/jpeg'});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      try{ await navigator.share({files:[file]}); return; }
+      catch(e){ if(e&&e.name==='AbortError') return; }
+    }
+    downloadOne(name);
+  }catch(e){ toast('Не удалось сохранить: '+e.message,'error'); }
 }
 function loadJSZip(){ return new Promise((res,rej)=>{ if(window.JSZip)return res(); const s=document.createElement('script'); s.src='https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js'; s.onload=()=>res(); s.onerror=()=>rej(new Error('Не удалось загрузить упаковщик')); document.head.appendChild(s); }); }
 async function downloadAll(){
   if(!LIST.length){ toast('Нет фотографий'); return; }
   try{
-    toast('Готовим архив…'); setProgress(5);
-    await loadJSZip();
+    toast('Готовим архив…'); setProgress(5); await loadJSZip();
     const zip=new JSZip(); const folder=zip.folder('Референсы');
-    for(let i=0;i<LIST.length;i++){
-      const name=LIST[i].name;
+    for(let i=0;i<LIST.length;i++){ const name=LIST[i].name;
       try{ const blob=await fetchBlob(name); folder.file(String(i+1).padStart(2,'0')+'_'+niceName(name),blob); }catch{}
       setProgress(5+Math.round((i/LIST.length)*80));
     }
-    setProgress(90);
-    const out=await zip.generateAsync({type:'blob'});
-    const url=URL.createObjectURL(out);
+    setProgress(90); const out=await zip.generateAsync({type:'blob'}); const url=URL.createObjectURL(out);
     const a=document.createElement('a'); a.href=url; a.download='Референсы-фото.zip'; document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),8000);
-    setProgress(100); toast('Архив скачан','success');
+    setTimeout(()=>URL.revokeObjectURL(url),8000); setProgress(100); toast('Архив скачан','success');
   }catch(e){ setProgress(100); toast(e.message||'Не удалось собрать архив','error'); }
 }
 
@@ -663,8 +755,7 @@ async function fetchAuth(){
   throw new Error('no auth');
 }
 async function submitLogin(){
-  const pw=document.getElementById('loginPw').value;
-  const remember=document.getElementById('rememberPw').checked;
+  const pw=document.getElementById('loginPw').value; const remember=document.getElementById('rememberPw').checked;
   if(!pw){ toast('Введите пароль','error'); return; }
   let blob; try{ blob=await fetchAuth(); }catch{ toast('Доступ ещё не настроен — откройте «Настройки»','error'); return; }
   try{ const token=await decryptToken(blob,pw); enterAdmin(token,remember); closeLogin(); toast('Вы вошли','success'); }
@@ -674,11 +765,10 @@ function enterAdmin(token,remember){
   TOKEN=token;
   if(remember!==false) localStorage.setItem('wph_tok',token); else sessionStorage.setItem('wph_tok',token);
   document.body.classList.add('is-admin'); document.getElementById('loginBtn').style.display='none';
-  render();
+  render(); if(document.getElementById('lb').classList.contains('open'))showLb();
 }
-function logout(){ TOKEN=null; localStorage.removeItem('wph_tok'); sessionStorage.removeItem('wph_tok'); document.body.classList.remove('is-admin'); document.getElementById('loginBtn').style.display=''; activeName=null; render(); toast('Вы вышли'); }
+function logout(){ TOKEN=null; localStorage.removeItem('wph_tok'); sessionStorage.removeItem('wph_tok'); document.body.classList.remove('is-admin'); document.getElementById('loginBtn').style.display=''; deselect(); render(); if(document.getElementById('lb').classList.contains('open'))showLb(); toast('Вы вышли'); }
 
-/* ── settings ── */
 function openSettings(){ const {owner,repo}=repoInfo(); document.getElementById('setOwner').value=owner; document.getElementById('setRepo').value=repo; document.getElementById('settingsModal').classList.add('open'); }
 function closeSettings(){ document.getElementById('settingsModal').classList.remove('open'); }
 async function setupAccess(){
@@ -688,17 +778,14 @@ async function setupAccess(){
   if(!token||!pw){ toast('Укажите токен и пароль','error'); return; }
   TOKEN=token;
   try{
-    toast('Сохраняем доступ…');
-    const blob=await encryptToken(token,pw);
+    toast('Сохраняем доступ…'); const blob=await encryptToken(token,pw);
     let sha=null; try{ const r=await fetch(ghBase()+'/auth.json',{headers:ghHeaders()}); if(r.ok)sha=(await r.json()).sha; }catch{}
     const res=await fetch(ghBase()+'/auth.json',{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Set access',content:b64utf8(JSON.stringify(blob,null,2)),...(sha?{sha}:{})})});
     if(!res.ok){ const e=await res.json().catch(()=>({})); throw new Error(e.message||('HTTP '+res.status)); }
-    await ensureManifest();
-    enterAdmin(token,true); closeSettings(); toast('Доступ настроен. Вы вошли.','success');
+    await ensureManifest(); enterAdmin(token,true); closeSettings(); toast('Доступ настроен. Вы вошли.','success');
   }catch(e){ TOKEN=localStorage.getItem('wph_tok')||null; toast('Ошибка: '+e.message,'error'); }
 }
 
-/* ── manifest write ── */
 async function ensureManifest(){
   try{ const r=await fetch(ghBase()+'/photos.json',{headers:ghHeaders()}); if(r.ok)return; }catch{}
   await fetch(ghBase()+'/photos.json',{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Init manifest',content:b64utf8(JSON.stringify({photos:[]},null,2))})});
@@ -717,34 +804,21 @@ async function doWriteManifest(list){
   throw new Error(lastErr+' — попробуйте ещё раз');
 }
 
-/* ── upload / delete ── */
 async function uploadFiles(files){
   if(!TOKEN){ openLogin(); return; }
-  const arr=Array.from(files); if(!arr.length)return;
-  const added=[];
+  const arr=Array.from(files); if(!arr.length)return; const added=[];
   for(let i=0;i<arr.length;i++){
-    const f=arr[i];
-    setProgress(Math.round((i/arr.length)*90));
-    toast(`Загружаем ${i+1} из ${arr.length}…`);
+    const f=arr[i]; setProgress(Math.round((i/arr.length)*90)); toast(`Загружаем ${i+1} из ${arr.length}…`);
     try{
-      const url=URL.createObjectURL(f);
-      const dim=await imgDims(url);
-      const b64=await fileToB64(f);
+      const url=URL.createObjectURL(f); const dim=await imgDims(url); const b64=await fileToB64(f);
       const name=Date.now()+'_'+i+'_'+f.name.replace(/[^A-Za-z0-9._-]/g,'_');
       const res=await fetch(ghBase()+'/photos/'+name,{method:'PUT',headers:ghHeaders(),body:JSON.stringify({message:'Add '+name,content:b64})});
       if(!res.ok){ const e=await res.json().catch(()=>({})); throw new Error(e.message||res.status); }
-      localBlobs[name]=url;
-      added.push({name,w:dim.w,h:dim.h,size:'auto'});
+      localBlobs[name]=url; added.push({name,w:dim.w,h:dim.h,size:'auto'});
     }catch(e){ toast('Ошибка загрузки: '+e.message,'error'); }
   }
-  if(added.length){
-    LIST=[...LIST,...added];
-    try{ await writeManifest(LIST); }catch(e){ toast('Загружено, но список не обновился: '+e.message,'error'); }
-    render();
-  }
-  setProgress(100);
-  document.getElementById('fileInput').value='';
-  if(added.length) toast(`Добавлено ${added.length} фото`,'success');
+  if(added.length){ LIST=[...LIST,...added]; try{ await writeManifest(LIST); }catch(e){ toast('Загружено, но список не обновился: '+e.message,'error'); } render(); }
+  setProgress(100); document.getElementById('fileInput').value=''; if(added.length) toast(`Добавлено ${added.length} фото`,'success');
 }
 async function deletePhoto(name){
   if(!TOKEN){ openLogin(); return; }
@@ -755,6 +829,7 @@ async function deletePhoto(name){
     if(meta.ok){ const sha=(await meta.json()).sha; await fetch(ghBase()+'/photos/'+encodeURIComponent(name),{method:'DELETE',headers:ghHeaders(),body:JSON.stringify({message:'Delete '+name,sha})}); }
     LIST=LIST.filter(p=>p.name!==name);
     if(localBlobs[name]){ URL.revokeObjectURL(localBlobs[name]); delete localBlobs[name]; }
+    if(activeName===name) deselect();
     await writeManifest(LIST); render(); toast('Фото удалено','success');
   }catch(e){ toast('Ошибка удаления: '+e.message,'error'); }
 }
@@ -768,6 +843,7 @@ gw.addEventListener('dragleave',()=>gw.style.outline='');
 gw.addEventListener('drop',e=>{ gw.style.outline=''; if(!TOKEN)return; e.preventDefault(); uploadFiles(e.dataTransfer.files); });
 
 if(TOKEN){ document.body.classList.add('is-admin'); document.getElementById('loginBtn').style.display='none'; }
+setupZoom();
 syncCells();
 loadGallery();
 </script>
