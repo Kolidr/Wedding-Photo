@@ -403,19 +403,8 @@ function syncCells(){
   const cols=colsForWidth(); const gap=10;
   const w=g.clientWidth||g.parentElement.clientWidth;
   const colW=Math.max(60,(w-(cols-1)*gap)/cols);
-  let rowH=colW;
-  if(window.innerWidth>=640 && LIST.length){
-    const maxR=Math.max(1,...LIST.map(p=>tileCR(p)[1]||1));   // самая высокая плитка
-    if(maxR>=3){                                              // ограничиваем только если есть высокие (3 ряда), чтобы влезали по высоте
-      const head=(document.querySelector('header')?.offsetHeight)||0;
-      const tb=(document.querySelector('.toolbar')?.offsetHeight)||0;
-      const avail=window.innerHeight-head-tb-44;
-      const maxRow=(avail-(maxR-1)*gap)/maxR;
-      if(maxRow>50) rowH=Math.min(colW,maxRow);
-    }
-  }
   g.style.setProperty('--cols',cols);
-  g.style.setProperty('--rowh',rowH+'px');
+  g.style.setProperty('--rowh',colW+'px');
 }
 window.addEventListener('resize',syncCells);
 
