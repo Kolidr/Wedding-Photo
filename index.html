@@ -59,7 +59,7 @@
   body.is-admin .admin-only{display:inline-flex}
 
   .gallery-wrap{padding:18px 20px 8px}
-  .gallery{display:grid;grid-template-columns:repeat(var(--cols,6),1fr);grid-auto-rows:var(--rowh,200px);gap:10px;max-width:1400px;margin:0 auto}
+  .gallery{display:grid;grid-template-columns:repeat(var(--cols,6),1fr);grid-auto-rows:var(--rowh,200px);gap:10px;grid-auto-flow:dense;max-width:1400px;margin:0 auto}
 
   .g-item{grid-column:span var(--c,1);grid-row:span var(--r,1);
     position:relative;overflow:hidden;border-radius:3px;background:var(--surface);border:1px solid var(--line);
@@ -82,25 +82,23 @@
   .t-open{right:8px;top:8px;width:32px;height:32px}
   .g-badge{position:absolute;left:8px;top:8px;display:none;font-size:11px;color:#fff;background:rgba(42,18,22,.62);border:1px solid rgba(255,255,255,.45);border-radius:20px;padding:2px 9px;z-index:4;pointer-events:none}
   body.is-admin .g-item:hover .g-badge,body.is-admin .g-item.selected .g-badge{display:inline-block}
-  .g-cmt{position:absolute;right:7px;bottom:7px;display:none;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:rgba(122,35,48,.85);border:1px solid rgba(255,255,255,.6);color:#fff;z-index:5;pointer-events:none}
-  .g-item.has-cmt .g-cmt{display:flex}
   @media (max-width:640px){ .t-prev,.t-next{width:30px;height:42px} }
 
   /* ── floating tool bar ── */
-  .floatbar{position:fixed;left:50%;bottom:calc(var(--safe-bot) + 16px);transform:translateX(-50%) translateY(150%);
-    z-index:140;display:flex;align-items:center;gap:5px;background:rgba(42,18,22,.94);backdrop-filter:blur(10px);
-    border:1px solid rgba(201,168,95,.45);border-radius:20px;padding:8px;box-shadow:0 18px 44px rgba(0,0,0,.34);
-    transition:transform .3s cubic-bezier(.2,.7,.3,1);max-width:calc(100vw - 20px)}
+  .floatbar{position:fixed;left:50%;bottom:calc(var(--safe-bot) + 14px);transform:translateX(-50%) translateY(160%);
+    z-index:140;display:flex;align-items:stretch;gap:4px;background:rgba(42,18,22,.94);backdrop-filter:blur(10px);
+    border:1px solid rgba(201,168,95,.45);border-radius:18px;padding:7px;box-shadow:0 18px 44px rgba(0,0,0,.34);
+    transition:transform .3s cubic-bezier(.2,.7,.3,1);max-width:calc(100vw - 14px)}
   .floatbar.show{transform:translateX(-50%) translateY(0)}
-  .fb-pos{color:var(--gold-soft);font-size:12px;padding:0 8px 0 6px;white-space:nowrap;font-family:var(--ff-display);font-style:italic}
-  .fb-pos b{font-style:normal;font-family:var(--ff-body)}
-  .floatbar button{min-width:50px;height:46px;border:none;background:rgba(255,255,255,.1);color:#fff;border-radius:13px;cursor:pointer;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:9px;letter-spacing:.02em;padding:0 7px;transition:background .15s}
+  .floatbar button{flex:0 0 auto;min-width:0;width:56px;height:48px;border:none;background:rgba(255,255,255,.1);color:#fff;border-radius:12px;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:9px;letter-spacing:0;padding:0 2px;transition:background .15s}
   .floatbar button:hover{background:rgba(255,255,255,.26)}
   .floatbar button.dng:hover{background:rgba(155,53,53,.62)}
-  .floatbar .fb-x{min-width:40px;background:transparent;font-size:17px}
+  .floatbar .fb-x{width:42px;background:transparent;font-size:18px;justify-content:center}
   .floatbar .fb-x:hover{background:rgba(255,255,255,.14)}
   .floatbar svg{display:block}
+  .floatbar .lbl{line-height:1;white-space:nowrap}
+  @media (max-width:380px){ .floatbar button{width:52px} .floatbar{gap:3px} }
 
   .empty{display:none;text-align:center;padding:64px 24px}
   .empty svg{opacity:.25;margin-bottom:16px;color:var(--burgundy)}
@@ -120,38 +118,16 @@
   .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;z-index:6}
   .lb-nav:hover{background:rgba(255,255,255,.25)}
   .lb-prev{left:12px}.lb-next{right:12px}
-  .lb-hint{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);color:rgba(255,255,255,.4);font-size:10.5px;letter-spacing:.05em;pointer-events:none;white-space:nowrap}
+  .lb-hint{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);color:rgba(255,255,255,.38);font-size:10.5px;letter-spacing:.04em;pointer-events:none;white-space:nowrap}
 
-  .lb-comments{flex:0 0 auto;max-height:30vh;overflow:auto;margin:8px auto 0;width:100%;max-width:720px;padding:0 14px}
-  .cm-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
-  .cm{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 11px;position:relative}
-  .cm .cm-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:3px}
-  .cm .cm-u{font-family:var(--ff-display);font-style:italic;font-size:14px;color:var(--gold-soft)}
-  .cm .cm-d{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.04em;white-space:nowrap}
-  .cm .cm-t{font-size:13px;color:rgba(255,255,255,.86);line-height:1.45;white-space:pre-wrap;word-break:break-word;padding-right:22px}
-  .cm-tag{display:inline-block;font-size:9px;font-style:normal;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:1px 6px;margin-left:6px;vertical-align:middle;letter-spacing:.02em}
-  .cm-del{position:absolute;right:7px;bottom:7px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center}
-  .cm-del:hover{background:rgba(155,53,53,.55);color:#fff}
-  .cm-empty{font-size:12.5px;color:rgba(255,255,255,.42);text-align:center;padding:6px 0 10px}
-  .cm-form{display:flex;flex-direction:column;gap:7px}
-  .cm-form .row{display:flex;gap:7px}
-  .cm-form input,.cm-form textarea{font-family:var(--ff-body);font-size:16px;font-weight:300;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:7px;padding:9px 11px;outline:none;width:100%}
-  .cm-form input::placeholder,.cm-form textarea::placeholder{color:rgba(255,255,255,.45)}
-  .cm-form textarea{resize:none;min-height:38px}
-  .cm-name{max-width:190px}
-  .cm-send{flex:0 0 auto;border:none;background:var(--burgundy);color:#fff;border-radius:7px;padding:0 16px;height:38px;cursor:pointer;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
-  .cm-send:hover{background:var(--burgundy-d)}
-  .cm-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-  .cm-rename{background:none;border:none;color:rgba(255,255,255,.5);font-size:11px;cursor:pointer;text-decoration:underline;padding:0}
-  .cm-hint{font-size:10.5px;color:rgba(255,255,255,.4);font-style:italic}
-
-  .lb-bar{flex:0 0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:10px 12px 0}
+  .lb-bar{flex:0 0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:12px 12px 0}
   .lb-grp{display:flex;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:6px}
   .lb-grp.admin-only2{display:none}
   body.is-admin .lb-grp.admin-only2{display:flex}
   .lb-grp button{min-width:48px;height:44px;padding:0 16px;border:none;background:rgba(255,255,255,.1);color:#fff;border-radius:9px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .15s}
   .lb-grp button:hover{background:rgba(255,255,255,.28)}
   .lb-grp button.dng:hover{background:rgba(155,53,53,.65)}
+  .lb-grp button.zb{min-width:46px;padding:0;font-size:22px;font-weight:300}
 
   /* ── MODALS ── */
   .backdrop{position:fixed;inset:0;background:rgba(42,18,22,.45);backdrop-filter:blur(3px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
@@ -262,23 +238,25 @@
 <!-- floating tools (admin, on select) -->
 <div class="floatbar" id="floatbar">
   <button class="fb-x" onclick="deselect()" title="Закрыть">✕</button>
-  <span class="fb-pos"><b id="fbPos">—</b></span>
   <button onclick="fbMove('start')" title="В начало">
     <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
-    В начало
+    <span class="lbl">В начало</span>
   </button>
   <button onclick="fbSize()" title="Формат / размер">
     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-    Размер
+    <span class="lbl">Размер</span>
   </button>
-  <button onclick="fbFit()" id="fbFitBtn" title="Обрезать / целиком">▢<span style="margin-top:1px">Вид</span></button>
+  <button onclick="fbFit()" title="Обрезать / целиком">
+    <span id="fbFitIco" style="font-size:16px;line-height:1">▢</span>
+    <span class="lbl">Заполн.</span>
+  </button>
   <button class="dng" onclick="fbDelete()" title="Удалить">
     <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6M10 11v6M14 11v6M9 6V4h6v2"/></svg>
-    Удалить
+    <span class="lbl">Удалить</span>
   </button>
   <button onclick="fbMove('end')" title="В конец">
     <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
-    В конец
+    <span class="lbl">В конец</span>
   </button>
 </div>
 
@@ -291,10 +269,13 @@
     <button class="lb-nav lb-prev" onclick="lbNav(-1)">&#8249;</button>
     <img id="lbImg" src="" alt="" draggable="false"/>
     <button class="lb-nav lb-next" onclick="lbNav(1)">&#8250;</button>
-    <div class="lb-hint" id="lbHint">Двойное касание или щипок — увеличить</div>
+    <div class="lb-hint" id="lbHint">Колесо мыши, кнопки −/+ или двойной клик — увеличить</div>
   </div>
-  <div class="lb-comments" id="lbComments"></div>
   <div class="lb-bar">
+    <div class="lb-grp">
+      <button class="zb" onclick="zoomBtn(-1)" title="Уменьшить">−</button>
+      <button class="zb" onclick="zoomBtn(1)" title="Увеличить">+</button>
+    </div>
     <div class="lb-grp">
       <button onclick="savePhoto(LIST[lbIndex].name)" title="Сохранить в галерею / скачать">
         <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
@@ -328,7 +309,7 @@
 <div class="backdrop" id="loginModal">
   <div class="modal">
     <h2>Вход для редактирования</h2>
-    <p class="sub">Просмотр и комментарии — для всех. Чтобы <strong>загружать, удалять, менять размер и порядок</strong> — введите пароль.</p>
+    <p class="sub">Просмотр и скачивание — для всех. Чтобы <strong>загружать, удалять, менять размер и порядок</strong> — введите пароль.</p>
     <div class="field"><label>Пароль</label>
       <input type="password" id="loginPw" placeholder="••••••••" onkeydown="if(event.key==='Enter')submitLogin()"/></div>
     <label class="check"><input type="checkbox" id="rememberPw" checked/> Запомнить на этом устройстве</label>
@@ -423,45 +404,20 @@ function syncCells(){
   const w=g.clientWidth||g.parentElement.clientWidth;
   const colW=Math.max(60,(w-(cols-1)*gap)/cols);
   let rowH=colW;
-  if(window.innerWidth>=640){
-    const head=(document.querySelector('header')?.offsetHeight)||0;
-    const tb=(document.querySelector('.toolbar')?.offsetHeight)||0;
-    const avail=window.innerHeight-head-tb-44;
-    const maxRow=(avail-2*gap)/3;
-    if(maxRow>50) rowH=Math.min(colW,maxRow);
+  if(window.innerWidth>=640 && LIST.length){
+    const maxR=Math.max(1,...LIST.map(p=>tileCR(p)[1]||1));   // самая высокая плитка
+    if(maxR>=3){                                              // ограничиваем только если есть высокие (3 ряда), чтобы влезали по высоте
+      const head=(document.querySelector('header')?.offsetHeight)||0;
+      const tb=(document.querySelector('.toolbar')?.offsetHeight)||0;
+      const avail=window.innerHeight-head-tb-44;
+      const maxRow=(avail-(maxR-1)*gap)/maxR;
+      if(maxRow>50) rowH=Math.min(colW,maxRow);
+    }
   }
   g.style.setProperty('--cols',cols);
   g.style.setProperty('--rowh',rowH+'px');
 }
 window.addEventListener('resize',syncCells);
-
-/* ── комментарии ── */
-function localComments(){ try{return JSON.parse(localStorage.getItem('wph_lc')||'{}');}catch{return {};} }
-function saveLocalComments(o){ localStorage.setItem('wph_lc',JSON.stringify(o)); }
-function getComments(name){ const it=LIST.find(p=>p.name===name); const repo=(it&&Array.isArray(it.comments))?it.comments:[]; const loc=localComments()[name]||[]; return {repo,loc}; }
-function hasComments(name){ const {repo,loc}=getComments(name); return (repo.length+loc.length)>0; }
-function userName(){ return localStorage.getItem('wph_uname')||''; }
-function setUserName(n){ if(n) localStorage.setItem('wph_uname',n); }
-async function addComment(name,text){
-  const entry={u:userName()||'Гость',t:text,ts:Date.now()};
-  if(TOKEN){
-    const it=LIST.find(p=>p.name===name); if(it){ if(!Array.isArray(it.comments))it.comments=[]; it.comments.push(entry); }
-    try{ await writeManifest(LIST); }
-    catch(e){ const lc=localComments(); (lc[name]=lc[name]||[]).push(entry); saveLocalComments(lc); toast('Сохранили на устройстве (нет связи)'); }
-  } else {
-    const lc=localComments(); (lc[name]=lc[name]||[]).push(entry); saveLocalComments(lc);
-  }
-}
-async function deleteComment(name,ts,isLocal){
-  if(isLocal){
-    const lc=localComments(); lc[name]=(lc[name]||[]).filter(c=>c.ts!==ts); if(!lc[name].length)delete lc[name]; saveLocalComments(lc);
-  } else {
-    if(!TOKEN){ toast('Этот комментарий можно удалить только в режиме редактирования'); return; }
-    const it=LIST.find(p=>p.name===name); if(it&&Array.isArray(it.comments)) it.comments=it.comments.filter(c=>c.ts!==ts);
-    try{ await writeManifest(LIST); }catch(e){ toast('Не удалось удалить: '+e.message,'error'); return; }
-  }
-  render(); showLb();
-}
 
 async function fetchManifest(){
   const {owner,repo}=repoInfo(); const urls=[];
@@ -478,7 +434,6 @@ function migrate(p){
   if(!(size==='auto'||PRESETS[size])) size='auto';
   const o={name:p.name, w:p.w||0, h:p.h||0, size};
   if(p.fit==='cover'||p.fit==='contain') o.fit=p.fit;
-  if(Array.isArray(p.comments)&&p.comments.length) o.comments=p.comments;
   return o;
 }
 async function loadGallery(){
@@ -500,11 +455,10 @@ function render(){
   empty.style.display='none';
 
   g.innerHTML=LIST.map((p,i)=>{
-    const [c,r]=tileCR(p), fit=fitOf(p), cmt=hasComments(p.name);
-    return `<div class="g-item ${fit}${cmt?' has-cmt':''}" data-i="${i}" data-name="${esc(p.name)}" style="--c:${c};--r:${r}">
+    const [c,r]=tileCR(p), fit=fitOf(p);
+    return `<div class="g-item ${fit}" data-i="${i}" data-name="${esc(p.name)}" style="--c:${c};--r:${r}">
       <img alt="${esc(p.name)}" loading="lazy"/>
       <span class="g-badge">${i+1} / ${LIST.length}</span>
-      <span class="g-cmt" title="Есть комментарий"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-8.5 8.5 8.5 8.5 0 01-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 014 11.5 8.5 8.5 0 0121 11.5z"/></svg></span>
       <div class="g-tools">
         <button class="tbtn t-prev" data-act="prev" title="Левее" ${i===0?'disabled':''}>&#8249;</button>
         <button class="tbtn t-next" data-act="next" title="Правее" ${i===LIST.length-1?'disabled':''}>&#8250;</button>
@@ -543,7 +497,7 @@ function render(){
 function onImgLoad(i,img){
   const p=LIST[i]; if(!p)return;
   if(!p.w||!p.h){ p.w=img.naturalWidth||1; p.h=img.naturalHeight||1;
-    if(!p.size||p.size==='auto'){ const [c,r]=computeAuto(p.w,p.h); const el=img.closest('.g-item'); if(el){el.style.setProperty('--c',c);el.style.setProperty('--r',r);} }
+    if(!p.size||p.size==='auto'){ const [c,r]=computeAuto(p.w,p.h); const el=img.closest('.g-item'); if(el){el.style.setProperty('--c',c);el.style.setProperty('--r',r);} syncCells(); }
   }
 }
 
@@ -560,8 +514,7 @@ function updateFloatbar(){
   const fb=document.getElementById('floatbar'); const idx=selectedIndex();
   const admin=document.body.classList.contains('is-admin');
   if(admin && idx>=0){
-    document.getElementById('fbPos').textContent=(idx+1)+' / '+LIST.length;
-    const p=LIST[idx]; document.getElementById('fbFitBtn').firstChild.textContent=(fitOf(p)==='contain')?'▣':'▢';
+    const p=LIST[idx]; document.getElementById('fbFitIco').textContent=(fitOf(p)==='contain')?'▣':'▢';
     fb.classList.add('show');
   } else fb.classList.remove('show');
 }
@@ -570,7 +523,7 @@ function fbFit(){ const i=selectedIndex(); if(i>=0)toggleFit(i); }
 function fbDelete(){ const i=selectedIndex(); if(i>=0)deletePhoto(LIST[i].name); }
 function fbMove(where){ const i=selectedIndex(); if(i<0)return; moveTo(i,where); }
 
-/* ── порядок (без авто-заполнения — позиция всегда меняется) ── */
+/* ── порядок ── */
 function moveBy(i,d){
   if(!TOKEN){ openLogin(); return; }
   const j=i+d; if(j<0||j>=LIST.length)return;
@@ -605,7 +558,7 @@ function refreshSizePop(){
 function afterEdit(){ render(); if(document.getElementById('lb').classList.contains('open')) showLb(); if(popIndex>=0) refreshSizePop(); scheduleSave(); }
 function setShape(s){ const p=LIST[popIndex]; if(!p)return; p.size=s; afterEdit(); }
 function setFit(f){ const p=LIST[popIndex]; if(!p)return; p.fit=f; afterEdit(); }
-function toggleFit(i){ if(!TOKEN){openLogin();return;} const p=LIST[i]; p.fit=(fitOf(p)==='cover')?'contain':'cover'; render(); if(document.getElementById('lb').classList.contains('open'))showLb(); scheduleSave(); }
+function toggleFit(i){ if(!TOKEN){openLogin();return;} const p=LIST[i]; p.fit=(fitOf(p)==='cover')?'contain':'cover'; render(); if(document.getElementById('lb').classList.contains('open'))showLb(); updateFloatbar(); scheduleSave(); }
 function closeSizePop(){ document.getElementById('sizePop').classList.remove('open'); popIndex=-1; }
 
 let saveT;
@@ -619,10 +572,11 @@ function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
 function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y);} function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
 function toggleZoomAt(cx,cy){ const img=document.getElementById('lbImg'); const rect=img.getBoundingClientRect();
   if(zScale>1.05){ resetZoom(); } else { const ns=2.5; const ox=cx-(rect.left+rect.width/2); const oy=cy-(rect.top+rect.height/2); zTx=-ox*(ns-1); zTy=-oy*(ns-1); zScale=ns; applyZoom(); } }
+function zoomBtn(dir){ const ns=clamp(zScale*(dir>0?1.4:1/1.4),1,5); zTx=zTx*(ns/zScale); zTy=zTy*(ns/zScale); zScale=ns; if(zScale<=1.001){zTx=0;zTy=0;zScale=1;} applyZoom(); }
 function setupZoom(){
-  const stage=document.getElementById('lbStage'), img=document.getElementById('lbImg');
+  const stage=document.getElementById('lbStage');
   stage.addEventListener('pointerdown',e=>{
-    if(e.target.closest('.lb-nav'))return;
+    if(e.target.closest('.lb-nav')||e.target.closest('.lb-bar'))return;
     stage.setPointerCapture&&stage.setPointerCapture(e.pointerId);
     pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
     if(pointers.size===1){ panStart={x:e.clientX-zTx,y:e.clientY-zTy}; }
@@ -657,42 +611,6 @@ function showLb(){
   const img=document.getElementById('lbImg');
   img.onerror=()=>{img.onerror=null;img.src=relUrl(p.name);}; img.src=primarySrc(p.name);
   document.getElementById('lbPos').textContent=(lbIndex+1)+' / '+LIST.length;
-  renderLbComments(p.name);
-}
-function renderLbComments(name){
-  const {repo,loc}=getComments(name); const admin=!!TOKEN; const me=userName();
-  const all=repo.map(c=>({...c,local:false})).concat(loc.map(c=>({...c,local:true}))).sort((a,b)=>(a.ts||0)-(b.ts||0));
-  const list = all.length
-    ? all.map(c=>{
-        const canDel = c.local || admin;
-        const del = canDel?`<button class="cm-del" title="Удалить комментарий" onclick="deleteComment('${esc(name).replace(/'/g,"\\'")}',${c.ts||0},${c.local})">✕</button>`:'';
-        const tag = c.local?`<span class="cm-tag">только на этом устройстве</span>`:'';
-        return `<div class="cm"><div class="cm-h"><span class="cm-u">${esc(c.u||'Гость')}${tag}</span><span class="cm-d">${fmtDate(c.ts)}</span></div><div class="cm-t">${esc(c.t||'')}</div>${del}</div>`;
-      }).join('')
-    : `<div class="cm-empty">Пока нет комментариев. Будьте первым!</div>`;
-  const haveName=!!me;
-  const nameField = haveName ? '' : `<input class="cm-name" id="cmName" placeholder="Ваше имя" maxlength="40"/>`;
-  const foot = haveName
-      ? `<div class="cm-foot"><button class="cm-rename" onclick="changeName()">Вы: ${esc(me)} · сменить имя</button>${admin?'':'<span class="cm-hint">виден только вам — войдите, чтобы увидели все</span>'}</div>`
-      : (admin?'':`<div class="cm-foot"><span class="cm-hint">виден только вам — войдите по паролю, чтобы увидели все</span></div>`);
-  document.getElementById('lbComments').innerHTML=
-    `<div class="cm-list">${list}</div>
-     <div class="cm-form">
-       <div class="row">${nameField}<textarea id="cmText" placeholder="Добавить комментарий…" rows="1"></textarea>
-       <button class="cm-send" onclick="submitComment()">Отпр.</button></div>
-       ${foot}
-     </div>`;
-}
-function fmtDate(ts){ if(!ts)return''; const d=new Date(ts); return d.toLocaleDateString('ru-RU',{day:'numeric',month:'short'})+' '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}); }
-function changeName(){ const n=prompt('Ваше имя для комментариев:',userName()); if(n!==null){ setUserName(n.trim()); showLb(); } }
-async function submitComment(){
-  const p=LIST[lbIndex]; if(!p)return;
-  const nameEl=document.getElementById('cmName');
-  if(nameEl){ const nm=nameEl.value.trim(); if(!nm){ toast('Введите имя','error'); nameEl.focus(); return; } setUserName(nm); }
-  const txtEl=document.getElementById('cmText'); const txt=(txtEl.value||'').trim();
-  if(!txt){ toast('Введите комментарий','error'); txtEl.focus(); return; }
-  await addComment(p.name,txt);
-  render(); showLb(); toast('Комментарий добавлен','success');
 }
 function closeLb(){ document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; resetZoom(); }
 function lbNav(d){ lbIndex=(lbIndex+d+LIST.length)%LIST.length; showLb(); }
@@ -703,7 +621,7 @@ async function lbDelete(){
   if(!LIST.length){ closeLb(); return; }
   lbIndex=Math.min(lbIndex,LIST.length-1); showLb();
 }
-document.addEventListener('keydown',e=>{ if(!document.getElementById('lb').classList.contains('open'))return; const t=e.target.tagName; if(t==='INPUT'||t==='TEXTAREA')return; if(e.key==='Escape')closeLb(); if(e.key==='ArrowLeft')lbNav(-1); if(e.key==='ArrowRight')lbNav(1); });
+document.addEventListener('keydown',e=>{ if(!document.getElementById('lb').classList.contains('open'))return; const t=e.target.tagName; if(t==='INPUT'||t==='TEXTAREA')return; if(e.key==='Escape')closeLb(); if(e.key==='ArrowLeft')lbNav(-1); if(e.key==='ArrowRight')lbNav(1); if(e.key==='+'||e.key==='=')zoomBtn(1); if(e.key==='-')zoomBtn(-1); });
 
 /* ── сохранение / скачивание ── */
 async function fetchBlob(name){
